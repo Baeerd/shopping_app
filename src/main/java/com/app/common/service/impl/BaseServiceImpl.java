@@ -115,6 +115,12 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         file.transferTo(dir);
     }
 
+    @Override
+    public List<T> findByParam(Map<String, String> params) {
+        List<T> list = getBaseMapper().find(params);
+        return list;
+    }
+
     private Map<String, String> filterParams(Map<String, String> params) {
         if(params==null) {
             params = new HashMap<>();
