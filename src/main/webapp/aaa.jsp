@@ -15,7 +15,7 @@
             //     alert(data.data);
             // });
 
-            submitForm("/system/regist", "register", function() {
+            submitForm("/goods/upload", "register", function() {
 
             });
         }
@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<form id='register' data='${user}'>
+<form id='register' data='${user}' enctype="multipart/form-data" action="/goods/upload" method="post">
     <input type="text" name="username" value="hpc"><br>
     <input type="text" name="password" value="123"><br>
     <input type="text" name="sex" value="M"><br>
@@ -42,6 +42,11 @@
     <select name="222" class="initSelect" typeId="test2">
         <option value="#value" style="background: antiquewhite;">#name</option>
     </select>
+
+    <br>
+    选择图片:<input type="file" name="file" accept="image/*" /> <br>
+    <input type="submit" value="立刻上传">
+
 </form>
 <button value="测试1111" onclick="test();">测试111</button>
 <button value="测试1111" onclick="test2();">测试select</button>

@@ -8,7 +8,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="category" property="category" jdbcType="BIGINT" />
-    <result column="num" property="num" jdbcType="INT" />
+    <result column="num" property="num" jdbcType="DECIMAL" />
     <result column="price" property="price" jdbcType="DOUBLE" />
     <result column="image" property="image" jdbcType="VARCHAR" />
   </resultMap>
@@ -26,7 +26,7 @@
       num,price,image)
     values (#{createdDt,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{category,jdbcType=BIGINT},
-      #{num,jdbcType=INT},#{price,jdbcType=DOUBLE},#{image,jdbcType=VARCHAR})
+      #{num,jdbcType=DECIMAL},#{price,jdbcType=DOUBLE},#{image,jdbcType=VARCHAR})
   </insert>
 
   <update id="update" parameterType="com.app.goods.entity.Goods" >
@@ -51,7 +51,7 @@
               category = #{category,jdbcType=BIGINT},
           </if>
           <if test="num != null" >
-              num = #{num,jdbcType=INT},
+              num = #{num,jdbcType=DECIMAL},
           </if>
           <if test="price != null" >
               price = #{price,jdbcType=DOUBLE},
@@ -92,7 +92,7 @@
 		        and category = #{category,jdbcType=BIGINT}
 		      </if>
 		      <if test="num != null" >
-		        and num = #{num,jdbcType=INT}
+		        and num = #{num,jdbcType=DECIMAL}
 		      </if>
 		      <if test="price != null" >
 		        and price = #{price,jdbcType=DOUBLE}
