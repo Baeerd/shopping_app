@@ -2,7 +2,6 @@ package com.app.common.service;
 
 import com.app.common.entity.DataConfig;
 
-import java.util.List;
 import java.util.Map;
 
 public interface DataConfigService extends BaseService<DataConfig> {

@@ -7,13 +7,31 @@ import java.util.Date;
 
 public class User extends AbstractEntity{
 
+    private String username;
+
+    private String password;
+
     private String sex;
 
     private String name;
 
-    private String username;
+    private String userType;
 
-    private String password;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getSex() {
         return sex;
@@ -31,19 +49,12 @@ public class User extends AbstractEntity{
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

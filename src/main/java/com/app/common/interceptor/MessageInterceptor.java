@@ -3,10 +3,8 @@ package com.app.common.interceptor;
 import com.app.common.entity.Response;
 import com.app.common.exception.MessageException;
 import com.app.common.util.Util;
-import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 

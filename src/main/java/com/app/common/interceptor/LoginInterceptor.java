@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +29,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (user == null) {
             String requestUrl = request.getContextPath()+request.getServletPath();
             log.info("当前请求没有登录...请求url为： "+ requestUrl);
-            LoginUtil.setInterceptorPath(requestUrl);
+            if(!"/error".equals(requestUrl)) {
+                LoginUtil.setInterceptorPath(requestUrl);
+            }
             response.sendRedirect(LoginUtil.LOGINPAGE);
             return false;
         }
@@ -39,11 +40,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        log.info("postHandle.......");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-        log.info("afterCompletion.......");
     }
 }

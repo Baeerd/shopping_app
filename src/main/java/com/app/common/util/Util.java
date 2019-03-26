@@ -1,8 +1,6 @@
 package com.app.common.util;
 
 import com.app.common.entity.DataConfig;
-import com.app.image.entity.Image;
-import com.fasterxml.jackson.core.JsonParser;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -84,6 +82,15 @@ public class Util {
     }
 
     /**
+     * 获取当前时间，格式yyyyMMddHHssSSS
+     * @return
+     */
+    public static String getCurrentTime() {
+        DateFormat format = new SimpleDateFormat("yyyyMMddHHssSSS");
+        return format.format(new Date());
+    }
+
+    /**
      * 集合转换成json
      * @param bean
      * @return
@@ -97,12 +104,41 @@ public class Util {
     }
 
     /**
-     * 获取当前时间，格式yyyyMMddHHssSSS
+     * 格式化时间，yyyy-MM-dd
+     * @param date
      * @return
      */
-    public static String getCurrentTime() {
-        DateFormat format = new SimpleDateFormat("yyyyMMddHHssSSS");
-        return format.format(new Date());
+    public static String formatDate(Date date) {
+        if(date == null) {
+            return "";
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+
+    /**
+     * 格式化时间，yyyy-MM-dd HH:mm:ss
+     * @param date
+     * @return
+     */
+    public static String formatDateTime(Date date) {
+        if(date == null) {
+            return "";
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
+    }
+
+    /**
+     * 根据格式自定义时间格式
+     * @return
+     */
+    public static String formatDate(Date date, String formatStr) {
+        if(date == null) {
+            return "";
+        }
+        SimpleDateFormat format = new SimpleDateFormat(formatStr);
+        return format.format(date);
     }
 
     public static void main(String[] args) {
