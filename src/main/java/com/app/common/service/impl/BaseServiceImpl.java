@@ -44,8 +44,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     protected BaseMapper<T> getBaseMapper() {
         BaseMapper<T> baseMapper = null;
         if (this.entityClass != null) {
-            baseMapper = (BaseMapper<T>) AppServiceHelper
-                    .findBean(StringUtils.uncapitalize(entityClassName) + "Mapper");
+            // 如果两个大写字母开头，spring注解扫描bean的规则为直接返回类名，所以需要特殊处理
+            // 判断第二个字母是否为大写
+            char c = entityClassName.charAt(1);
+            if(c < 97 || c > 122) {
+                baseMapper = (BaseMapper<T>) AppServiceHelper
+                        .findBean(entityClassName + "Mapper");
+            } else {
+                baseMapper = (BaseMapper<T>) AppServiceHelper
+                        .findBean(StringUtils.uncapitalize(entityClassName) + "Mapper");
+            }
         }
         return baseMapper;
     }
@@ -102,10 +110,18 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     public PageModel<T> findByPage(Map<String, String> params) {
         // 过滤params
         params = filterParams(params);
+        Integer total = getBaseMapper().findCounts(params);
         Page<T> page = PageHelper.startPage(Integer.valueOf(params.get("pageNum")), Integer.valueOf(params.get("pageSize")));
         getBaseMapper().find(params);
-        PageModel<T> result = PageModel.build(page);
+        PageModel<T> result = PageModel.build(page,params);
+        result.setTotal(total);
         return result;
+    }
+
+    @Override
+    public List<T> findByParam(Map<String, String> params) {
+        List<T> list = getBaseMapper().find(params);
+        return list;
     }
 
     @Override
@@ -115,13 +131,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         file.transferTo(dir);
     }
 
-    @Override
-    public List<T> findByParam(Map<String, String> params) {
-        List<T> list = getBaseMapper().find(params);
-        return list;
-    }
-
-    private Map<String, String> filterParams(Map<String, String> params) {
+    protected Map<String, String> filterParams(Map<String, String> params) {
         if(params==null) {
             params = new HashMap<>();
         }

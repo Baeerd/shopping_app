@@ -58,6 +58,7 @@ public interface BaseService<T> {
      */
     public PageModel<T> findByPage(Map<String, String> params);
 
+
     /**
      * 文件上传
      * @param file 需要上传的文件

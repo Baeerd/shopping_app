@@ -7,34 +7,33 @@ import java.util.Date;
 
 public class GoodsOrder extends AbstractEntity{
 
-    private String state;
+    private Long carId;
 
-    private String goodsId;
+    private Double totalPrice;
 
-    private String totalPrice;
+    private String orderNo;
 
-    public String getState() {
-        return state;
+    public Long getCarId() {
+        return carId;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
-    public String getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(String totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
 }

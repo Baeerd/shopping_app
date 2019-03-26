@@ -2,7 +2,6 @@ package com.app.common.config;
 
 import com.app.common.entity.AppConfig;
 import com.app.common.interceptor.LoginInterceptor;
-import com.app.common.util.LoginUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
@@ -39,7 +38,7 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
         InterceptorRegistration interceptorRegistration = registry.addInterceptor(new LoginInterceptor());
         // 拦截的地址
         String[] patterns = new String[]{
-                "/"
+                "/**"
         };
         interceptorRegistration.addPathPatterns(patterns);
         // 不拦截的地址

@@ -12,9 +12,9 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-  <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-  <link rel="stylesheet" href="assets/css/admin.css">
-  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="../assets/css/amazeui.min.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/app.css">
 </head>
 
 <body data-type="login">
@@ -29,7 +29,7 @@
 		</div>
 
 		<div class="login-font">
-			<i>登录 </i> or <a href="regist.html"><span> 注册</span></a>
+			<i>注册 </i> or <a href="login.html"><span> 登录</span></a>
 		</div>
 		<div class="am-u-sm-10 login-am-center">
 			<form class="am-form">
@@ -40,16 +40,16 @@
 					<div class="am-form-group">
 						<input type="password" class="" id="doc-ipt-pwd-1" placeholder="密码">
 					</div>
-					<p><button type="submit" class="am-btn am-btn-default">登录</button></p>
+					<p><button type="submit" class="am-btn am-btn-default">注册</button></p>
 				</fieldset>
 			</form>
 		</div>
 	</div>
 </div>
 
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/amazeui.min.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/amazeui.min.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 
 </html>

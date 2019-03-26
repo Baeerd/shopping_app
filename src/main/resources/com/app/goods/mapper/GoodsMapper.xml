@@ -7,26 +7,29 @@
     <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="category" property="category" jdbcType="BIGINT" />
     <result column="num" property="num" jdbcType="DECIMAL" />
     <result column="price" property="price" jdbcType="DOUBLE" />
     <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+    <result column="shops_id" property="shopsId" jdbcType="BIGINT" />
   </resultMap>
 
 
   <sql id="Base_Column_List" >
-    id,created_dt,created_by,name,remark,category,num,price,
-    image
+    id,created_dt,created_by,name,remark,num,price,image,
+    goods_type,shops_id
   </sql>
 
 
   <insert id="insert" parameterType="com.app.goods.entity.Goods" >
     insert into goods (created_dt,created_by,
-      name,remark,category,
-      num,price,image)
+      name,remark,num,
+      price,image,goods_type,
+      shops_id)
     values (#{createdDt,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR},
-      #{name,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{category,jdbcType=BIGINT},
-      #{num,jdbcType=DECIMAL},#{price,jdbcType=DOUBLE},#{image,jdbcType=VARCHAR})
+      #{name,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{num,jdbcType=DECIMAL},
+      #{price,jdbcType=DOUBLE},#{image,jdbcType=VARCHAR},#{goodsType,jdbcType=VARCHAR},
+      #{shopsId,jdbcType=BIGINT})
   </insert>
 
   <update id="update" parameterType="com.app.goods.entity.Goods" >
@@ -47,9 +50,6 @@
           <if test="remark != null" >
               remark = #{remark,jdbcType=VARCHAR},
           </if>
-          <if test="category != null" >
-              category = #{category,jdbcType=BIGINT},
-          </if>
           <if test="num != null" >
               num = #{num,jdbcType=DECIMAL},
           </if>
@@ -58,6 +58,12 @@
           </if>
           <if test="image != null" >
               image = #{image,jdbcType=VARCHAR},
+          </if>
+          <if test="goodsType != null" >
+              goods_type = #{goodsType,jdbcType=VARCHAR},
+          </if>
+          <if test="shopsId != null" >
+              shops_id = #{shopsId,jdbcType=BIGINT},
           </if>
       </set>
   		where id = #{id,jdbcType=BIGINT}
@@ -88,9 +94,6 @@
 		      <if test="remark != null" >
 		        and remark = #{remark,jdbcType=VARCHAR}
 		      </if>
-		      <if test="category != null" >
-		        and category = #{category,jdbcType=BIGINT}
-		      </if>
 		      <if test="num != null" >
 		        and num = #{num,jdbcType=DECIMAL}
 		      </if>
@@ -99,6 +102,12 @@
 		      </if>
 		      <if test="image != null" >
 		        and image = #{image,jdbcType=VARCHAR}
+		      </if>
+		      <if test="goodsType != null" >
+		        and goods_type = #{goodsType,jdbcType=VARCHAR}
+		      </if>
+		      <if test="shopsId != null" >
+		        and shops_id = #{shopsId,jdbcType=BIGINT}
 		      </if>
 	      </trim>
 	order by id desc

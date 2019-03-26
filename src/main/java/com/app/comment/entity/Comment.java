@@ -9,9 +9,7 @@ public class Comment extends AbstractEntity{
 
     private String content;
 
-    private String level;
-
-    private String goodsId;
+    private Long goodsId;
 
     public String getContent() {
         return content;
@@ -21,19 +19,11 @@ public class Comment extends AbstractEntity{
         this.content = content;
     }
 
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getGoodsId() {
+    public Long getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(String goodsId) {
+    public void setGoodsId(Long goodsId) {
         this.goodsId = goodsId;
     }
 

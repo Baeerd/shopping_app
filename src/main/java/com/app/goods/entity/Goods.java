@@ -11,13 +11,15 @@ public class Goods extends AbstractEntity{
 
     private String remark;
 
-    private String category;
+    private Integer num;
 
-    private String num;
-
-    private String price;
+    private Double price;
 
     private String image;
+
+    private String goodsType;
+
+    private Long shopsId;
 
     public String getName() {
         return name;
@@ -35,27 +37,19 @@ public class Goods extends AbstractEntity{
         this.remark = remark;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(String num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -67,4 +61,19 @@ public class Goods extends AbstractEntity{
         this.image = image;
     }
 
+    public String getGoodsType() {
+        return goodsType;
+    }
+
+    public void setGoodsType(String goodsType) {
+        this.goodsType = goodsType;
+    }
+
+    public Long getShopsId() {
+        return shopsId;
+    }
+
+    public void setShopsId(Long shopsId) {
+        this.shopsId = shopsId;
+    }
 }

@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,7 +16,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/dataConfig")
-public class DataConfigController extends BaseController<DataConfig>{
+public class DataConfigController extends BaseController<DataConfig> {
 
     @Autowired
     private DataConfigService dataConfigService;

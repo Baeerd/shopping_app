@@ -5,22 +5,22 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="created_dt" property="createdDt" jdbcType="TIMESTAMP" />
     <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="car_id" property="carId" jdbcType="BIGINT" />
     <result column="total_price" property="totalPrice" jdbcType="DOUBLE" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
   </resultMap>
 
 
   <sql id="Base_Column_List" >
-    id,created_dt,created_by,state,goods_id,total_price
+    id,created_dt,created_by,car_id,total_price,order_no
   </sql>
 
 
   <insert id="insert" parameterType="com.app.order.entity.GoodsOrder" >
     insert into goods_order (created_dt,created_by,
-      state,goods_id,total_price)
+      car_id,total_price,order_no)
     values (#{createdDt,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR},
-      #{state,jdbcType=VARCHAR},#{goodsId,jdbcType=BIGINT},#{totalPrice,jdbcType=DOUBLE})
+      #{carId,jdbcType=BIGINT},#{totalPrice,jdbcType=DOUBLE},#{orderNo,jdbcType=VARCHAR})
   </insert>
 
   <update id="update" parameterType="com.app.order.entity.GoodsOrder" >
@@ -35,14 +35,14 @@
           <if test="createdBy != null" >
               created_by = #{createdBy,jdbcType=VARCHAR},
           </if>
-          <if test="state != null" >
-              state = #{state,jdbcType=VARCHAR},
-          </if>
-          <if test="goodsId != null" >
-              goods_id = #{goodsId,jdbcType=BIGINT},
+          <if test="carId != null" >
+              car_id = #{carId,jdbcType=BIGINT},
           </if>
           <if test="totalPrice != null" >
               total_price = #{totalPrice,jdbcType=DOUBLE},
+          </if>
+          <if test="orderNo != null" >
+              order_no = #{orderNo,jdbcType=VARCHAR},
           </if>
       </set>
   		where id = #{id,jdbcType=BIGINT}
@@ -67,14 +67,14 @@
 		      <if test="createdBy != null" >
 		        and created_by = #{createdBy,jdbcType=VARCHAR}
 		      </if>
-		      <if test="state != null" >
-		        and state = #{state,jdbcType=VARCHAR}
-		      </if>
-		      <if test="goodsId != null" >
-		        and goods_id = #{goodsId,jdbcType=BIGINT}
+		      <if test="carId != null" >
+		        and car_id = #{carId,jdbcType=BIGINT}
 		      </if>
 		      <if test="totalPrice != null" >
 		        and total_price = #{totalPrice,jdbcType=DOUBLE}
+		      </if>
+		      <if test="orderNo != null" >
+		        and order_no = #{orderNo,jdbcType=VARCHAR}
 		      </if>
 	      </trim>
 	order by id desc
