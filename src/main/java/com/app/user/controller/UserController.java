@@ -86,4 +86,16 @@ public class UserController extends BaseController<User>{
         return mv;
     }
 
+    /**
+     * 注销
+     * @param request
+     * @return
+     */
+    @RequestMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("/login");
+        request.getSession().invalidate();;
+        return modelAndView;
+    }
+
 }

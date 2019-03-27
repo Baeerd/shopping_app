@@ -21,6 +21,11 @@ public class CommonController {
         return page;
     }
 
+    @RequestMapping("/{page}/{page1}")
+    public String showPage(@PathVariable String page, @PathVariable String page1) {
+        return page + "/" + page1;
+    }
+
     /**
      * 跳转到首页,首页路径在application.properties文件中配置
      * @param model 可以向请求中放值
