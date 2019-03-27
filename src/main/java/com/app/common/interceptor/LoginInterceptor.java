@@ -28,6 +28,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         Object user = request.getSession().getAttribute(LoginUtil.LOGINUSER);
         if (user == null) {
             String requestUrl = request.getContextPath()+request.getServletPath();
+            if("/regist.html".equals(requestUrl)||requestUrl.startsWith("/system")){
+                return true;
+            }
             log.info("当前请求没有登录...请求url为： "+ requestUrl);
             if(!"/error".equals(requestUrl)) {
                 LoginUtil.setInterceptorPath(requestUrl);

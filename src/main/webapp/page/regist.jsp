@@ -31,14 +31,17 @@
 		<div class="login-font">
 			<i>注册 </i> or <a href="login.html"><span> 登录</span></a>
 		</div>
+		<div class="login-font">
+			<span>${msg } </span>
+		</div>
 		<div class="am-u-sm-10 login-am-center">
-			<form class="am-form">
+			<form class="am-form" action="/system/regist" method="post">
 				<fieldset>
 					<div class="am-form-group">
-						<input type="email" class="" id="doc-ipt-email-1" placeholder="用户名">
+						<input type="text" class="" <%--id="doc-ipt-email-1"--%> name="username" value="${user.username }" placeholder="用户名">
 					</div>
 					<div class="am-form-group">
-						<input type="password" class="" id="doc-ipt-pwd-1" placeholder="密码">
+						<input type="password" class="" <%--id="doc-ipt-pwd-1"--%> name="password" placeholder="密码">
 					</div>
 					<p><button type="submit" class="am-btn am-btn-default">注册</button></p>
 				</fieldset>

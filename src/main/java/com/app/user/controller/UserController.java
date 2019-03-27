@@ -7,12 +7,17 @@ import com.app.common.util.LoginUtil;
 import com.app.common.util.Util;
 import com.app.user.entity.User;
 import com.app.user.service.UserService;
+import com.github.pagehelper.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,10 +52,38 @@ public class UserController extends BaseController<User>{
     }
 
     @RequestMapping("/regist")
-    public void regist(HttpServletRequest request) {
+    public ModelAndView regist(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView();
+
         String json = this.getJsonFromRequest(request);
         User user = Util.jsonToBean(json, User.class);
-        System.out.println(user);
+        mv.addObject(user);
+
+        //用户名或密码为空，注册失败
+        if(StringUtil.isEmpty(user.getUsername())||StringUtil.isEmpty(user.getPassword())){
+            mv.setViewName("regist");
+            mv.addObject("msg","注册失败！请输入用户名密码");
+            return mv;
+        }
+
+        //已存在的用户名，注册失败
+        Map<String,String> params = new HashMap<>();
+        params.put("username",user.getUsername());
+        List<User> userList = userService.findByParam(params);
+        if(!userList.isEmpty()){
+            mv.setViewName("/regist");
+            mv.addObject("msg","注册失败！此用户名已存在");
+            return mv;
+        }
+
+
+        user.setCreatedBy("NA");
+        user.setCreatedDt(new Date());
+        userService.insert(user);
+        mv.setViewName("/login");
+        mv.addObject("msg","注册成功，请登录！");
+        return mv;
     }
 
 }
