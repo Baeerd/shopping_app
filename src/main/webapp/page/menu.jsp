@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <div class="tpl-left-nav tpl-left-nav-hover">
     <div class="tpl-left-nav-title">
         服装商城菜单
@@ -50,9 +51,15 @@
 
                             </a>
 
+                            <a href="/user/vip" class="menuListener" id="userVip">
+                                <i class="am-icon-angle-right"></i>
+                                <span>会员管理</span>
+
+                            </a>
+
                             <a href="form-news-list.html" class="menuListener">
                                 <i class="am-icon-angle-right"></i>
-                                <span>用户管理</span>
+                                <span>商家管理</span>
 
                             </a>
                     </li>
@@ -72,10 +79,24 @@
                             <span>服装浏览</span>
                         </a>
 
-                        <a href="form-line.html" class="menuListener">
+                        <a href="/system/registVip?id=${loginUser.id}" class="menuListener" id="registVip">
                             <i class="am-icon-angle-right"></i>
-                            <span>申请入驻</span>
+                            <span>会员注册</span>
                         </a>
+                        <c:choose>
+                            <c:when  test="${loginUser.userType=='2'}">
+                                <a href="form-line.html" class="menuListener" id="registSeller">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>申请入驻</span>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/system/registSeller?id=${loginUser.id}" class="menuListener" id="registSeller">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>申请入驻</span>
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                     </li>
                 </ul>
             </li>
