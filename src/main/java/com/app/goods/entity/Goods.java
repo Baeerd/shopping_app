@@ -1,6 +1,8 @@
 package com.app.goods.entity;
 
 import com.app.common.entity.AbstractEntity;
+import com.app.common.entity.Constant;
+import com.app.common.util.Util;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -20,6 +22,14 @@ public class Goods extends AbstractEntity{
     private String goodsType;
 
     private Long shopsId;
+
+    private Date createdDt;
+
+    private String createdDtView;
+
+    private String goodsTypeView;
+
+    private String shopsIdView;
 
     public String getName() {
         return name;
@@ -65,15 +75,35 @@ public class Goods extends AbstractEntity{
         return goodsType;
     }
 
-    public void setGoodsType(String goodsType) {
-        this.goodsType = goodsType;
-    }
-
     public Long getShopsId() {
         return shopsId;
     }
 
+    @Override
+    public void setCreatedDt(Date createdDt) {
+        this.createdDt = createdDt;
+        this.createdDtView = Util.formatDate(createdDt);
+    }
+
+    public void setGoodsType(String goodsType) {
+        this.goodsType = goodsType;
+        this.goodsTypeView = Constant.dataConfigMap.get(Constant.GOODS_TYPE).get(goodsType);
+    }
+
     public void setShopsId(Long shopsId) {
         this.shopsId = shopsId;
+        this.shopsIdView = Constant.dataConfigMap.get(Constant.SHOPS).get(shopsId+"");
+    }
+
+    public String getCreatedDtView() {
+        return createdDtView;
+    }
+
+    public String getGoodsTypeView() {
+        return goodsTypeView;
+    }
+
+    public String getShopsIdView() {
+        return shopsIdView;
     }
 }

@@ -48,22 +48,17 @@
                         </div>
                         <div class="am-u-sm-12 am-u-md-3">
                             <div class="am-form-group">
-                                <select data-am-selected="{btnSize: 'sm'}">
-                                  <option value="option1">商品类别</option>
-                                  <option value="option2">IT业界</option>
-                                  <option value="option3">数码产品</option>
-                                  <option value="option3">笔记本电脑</option>
-                                  <option value="option3">平板电脑</option>
-                                  <option value="option3">只能手机</option>
-                                  <option value="option3">超极本</option>
+                                <select id="goodsTypeParam" data-am-selected="{btnSize: 'sm'}" class="initSelect" typeId="goodsType">
+                                  <option value="">点击选择</option>
+                                  <option value="#value">#name</option>
                                 </select>
                             </div>
                         </div>
                         <div class="am-u-sm-12 am-u-md-3">
                             <div class="am-input-group am-input-group-sm">
-                                <input type="text" class="am-form-field" placeholder="商品名称...">
+                                <input id="goodsNameParam" type="text" class="am-form-field" placeholder="商品名称..." value="${goodsName}">
                                 <span class="am-input-group-btn">
-                    <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button"></button>
+                    <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button" onclick="goodsList();"></button>
           </span>
                             </div>
                         </div>
@@ -88,82 +83,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Business management</td>
-                                            <td>default</td>
-                                            <td class="am-hide-sm-only">测试1号</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td>
-                                                <div class="am-btn-toolbar">
-                                                    <div class="am-btn-group am-btn-group-xs">
-                                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                        <c:forEach items="${page.list}" var="goods">
+                                            <tr>
+                                                <td>${goods.id}</td>
+                                                <td>${goods.createdDtView}</td>
+                                                <td>${goods.createdBy}</td>
+                                                <td >${goods.name}</td>
+                                                <td >${goods.remark}</td>
+                                                <td >${goods.num}</td>
+                                                <td >${goods.price}</td>
+                                                <td >${goods.image}</td>
+                                                <td >${goods.goodsTypeView}</td>
+                                                <td >${goods.shopsIdView}</td>
+                                                <td>
+                                                    <div class="am-btn-toolbar">
+                                                        <div class="am-btn-group am-btn-group-xs">
+                                                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="deleteGoods(${goods.id});"><span class="am-icon-trash-o"></span> 删除</button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Business management</td>
-                                            <td>default</td>
-                                            <td class="am-hide-sm-only">测试1号</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td>
-                                                <div class="am-btn-toolbar">
-                                                    <div class="am-btn-group am-btn-group-xs">
-                                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Business management</td>
-                                            <td>default</td>
-                                            <td class="am-hide-sm-only">测试1号</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td>
-                                                <div class="am-btn-toolbar">
-                                                    <div class="am-btn-group am-btn-group-xs">
-                                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Business management</td>
-                                            <td>default</td>
-                                            <td class="am-hide-sm-only">测试1号</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                            <td>
-                                                <div class="am-btn-toolbar">
-                                                    <div class="am-btn-group am-btn-group-xs">
-                                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
 
@@ -188,8 +128,29 @@
 
 
 <script type="text/javascript">
+    /**
+     * 添加商品
+     */
     function addGoods() {
         window.location = '/goods/goodsAdd';
+    }
+
+    /**
+     * 查询商品
+     */
+    function goodsList() {
+        var goodsTypeParam = $("#goodsTypeParam").val();
+        var goodsNameParam = $("#goodsNameParam").val();
+        window.location = '/goods/goodsList?name=' + goodsNameParam + '&goodsType=' + goodsTypeParam;
+    }
+
+    /**
+     * 删除商品
+     */
+    function deleteGoods(goodsId) {
+        $.get("/goods/deleteJson", {"id" : goodsId}, function (data) {
+            this.goodsList();
+        });
     }
 </script>
 

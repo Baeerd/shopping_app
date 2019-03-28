@@ -44,7 +44,7 @@
           <if test="createdBy != null" >
               created_by = #{createdBy,jdbcType=VARCHAR},
           </if>
-          <if test="name != null" >
+          <if test='name != null and name != ""' >
               name = #{name,jdbcType=VARCHAR},
           </if>
           <if test="remark != null" >
@@ -59,7 +59,7 @@
           <if test="image != null" >
               image = #{image,jdbcType=VARCHAR},
           </if>
-          <if test="goodsType != null" >
+          <if test='goodsType != null and goodsType != ""' >
               goods_type = #{goodsType,jdbcType=VARCHAR},
           </if>
           <if test="shopsId != null" >
@@ -88,8 +88,8 @@
 		      <if test="createdBy != null" >
 		        and created_by = #{createdBy,jdbcType=VARCHAR}
 		      </if>
-		      <if test="name != null" >
-		        and name = #{name,jdbcType=VARCHAR}
+		      <if test='name != null and name != ""' >
+		        and name like '%${name}%'
 		      </if>
 		      <if test="remark != null" >
 		        and remark = #{remark,jdbcType=VARCHAR}
@@ -103,7 +103,7 @@
 		      <if test="image != null" >
 		        and image = #{image,jdbcType=VARCHAR}
 		      </if>
-		      <if test="goodsType != null" >
+		      <if test='goodsType != null and goodsType != ""' >
 		        and goods_type = #{goodsType,jdbcType=VARCHAR}
 		      </if>
 		      <if test="shopsId != null" >
@@ -112,4 +112,42 @@
 	      </trim>
 	order by id desc
   </select>
+    
+    <select id="findCounts" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+        count(0)
+        from goods
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="id != null" >
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="createdDt != null" >
+                and created_dt = #{createdDt,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createdBy != null" >
+                and created_by = #{createdBy,jdbcType=VARCHAR}
+            </if>
+            <if test='name != null and name != ""' >
+                and name like '%${name}%'
+            </if>
+            <if test="remark != null" >
+                and remark = #{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="num != null" >
+                and num = #{num,jdbcType=DECIMAL}
+            </if>
+            <if test="price != null" >
+                and price = #{price,jdbcType=DOUBLE}
+            </if>
+            <if test="image != null" >
+                and image = #{image,jdbcType=VARCHAR}
+            </if>
+            <if test='goodsType != null and goodsType != ""' >
+                and goods_type = #{goodsType,jdbcType=VARCHAR}
+            </if>
+            <if test="shopsId != null" >
+                and shops_id = #{shopsId,jdbcType=BIGINT}
+            </if>
+        </trim>
+    </select>
 </mapper>

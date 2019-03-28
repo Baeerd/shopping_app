@@ -42,7 +42,7 @@
 
 
                         <div class="am-u-sm-12 am-u-md-9">
-                            <form class="am-form am-form-horizontal">
+                            <form class="am-form am-form-horizontal" action="/goods/addGoods" enctype="multipart/form-data" method="post">
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">商品名称</label>
                                     <div class="am-u-sm-9">
@@ -92,13 +92,13 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">图片</label>
                                     <div class="am-u-sm-9">
-                                        <input type="file" >
+                                        <input type="file" name="file">
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary">保存修改</button>
+                                        <button type="submit" class="am-btn am-btn-primary">保存修改</button>
                                     </div>
                                 </div>
                             </form>
