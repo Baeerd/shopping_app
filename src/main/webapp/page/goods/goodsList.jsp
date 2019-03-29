@@ -23,7 +23,7 @@
 
         <div class="tpl-content-wrapper">
             <div class="tpl-content-page-title">
-                Amaze UI 文字列表
+                商品管理
             </div>
             <ol class="am-breadcrumb">
                 <li><a href="/index.html" class="am-icon-home">首页</a></li>

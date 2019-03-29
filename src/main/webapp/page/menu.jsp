@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <div class="tpl-left-nav tpl-left-nav-hover">
     <div class="tpl-left-nav-title">
         服装商城菜单
@@ -74,7 +73,7 @@
                 </a>
                 <ul class="tpl-left-nav-sub-menu" style="display: block;">
                     <li>
-                        <a href="form-amazeui.html" class="menuListener">
+                        <a href="/goods/goodsListPanel" class="menuListener">
                             <i class="am-icon-angle-right"></i>
                             <span>服装浏览</span>
                         </a>

@@ -46,6 +46,20 @@ public class GoodsController extends BaseController<Goods>{
         return modelAndView;
     }
 
+    @RequestMapping("/goodsListPanel")
+    public ModelAndView goodsListPanel(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("/goods/goodsListPanel");
+        Map<String, String> params = new HashMap<>();
+        if(request != null) {
+            String json = super.getJsonFromRequest(request);
+            params = Util.jsonToMap(json);
+        }
+        PageModel<Goods> page = goodsService.findByPage(params);
+        modelAndView.addObject("page", page);
+        modelAndView.addObject("goodsName", params.get("name"));
+        return modelAndView;
+    }
+
     @RequestMapping("/addGoods")
     public ModelAndView addGoods(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
         try {

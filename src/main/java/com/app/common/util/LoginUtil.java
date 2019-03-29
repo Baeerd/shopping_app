@@ -29,6 +29,14 @@ public class LoginUtil {
     }
 
     /**
+     * 获取此时登陆用户主键
+     * @return
+     */
+    public static String getUserId() {
+        return user==null?"":user.getId().toString();
+    }
+
+    /**
      * 获取此时登陆用户名
      * @return
      */

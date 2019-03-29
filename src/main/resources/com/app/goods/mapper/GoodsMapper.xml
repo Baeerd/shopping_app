@@ -150,4 +150,8 @@
             </if>
         </trim>
     </select>
+
+    <update id="updateGoodsNum" parameterType="java.lang.String">
+      update Goods set num = num ${numFlag} where id = ${goodsId}
+    </update>
 </mapper>
