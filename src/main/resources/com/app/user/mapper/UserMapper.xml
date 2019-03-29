@@ -10,21 +10,23 @@
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
   </resultMap>
 
 
   <sql id="Base_Column_List" >
-    id,created_dt,created_by,username,password,sex,name,user_type
+    id,created_dt,created_by,username,password,sex,name,user_type,email,phone
   </sql>
 
 
   <insert id="insert" parameterType="com.app.user.entity.User" >
     insert into user (created_dt,created_by,
       username,password,sex,
-      name,user_type)
+      name,user_type,email,phone)
     values (#{createdDt,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR},
       #{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},
-      #{name,jdbcType=VARCHAR},#{userType,jdbcType=VARCHAR})
+      #{name,jdbcType=VARCHAR},#{userType,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR})
   </insert>
 
   <update id="update" parameterType="com.app.user.entity.User" >
@@ -53,6 +55,12 @@
           </if>
           <if test="userType != null" >
               user_type = #{userType,jdbcType=VARCHAR},
+          </if>
+          <if test="email != null" >
+              email = #{email,jdbcType=VARCHAR},
+          </if>
+          <if test="phone != null" >
+              phone = #{phone,jdbcType=VARCHAR},
           </if>
       </set>
   		where id = #{id,jdbcType=BIGINT}
@@ -92,6 +100,12 @@
 		      <if test="userType != null" >
 		        and user_type = #{userType,jdbcType=VARCHAR}
 		      </if>
+            <if test="email != null" >
+                and email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null" >
+                and phone = #{phone,jdbcType=VARCHAR}
+            </if>
 	      </trim>
 	order by id desc
   </select>

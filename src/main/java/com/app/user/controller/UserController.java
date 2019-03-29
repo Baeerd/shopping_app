@@ -98,4 +98,89 @@ public class UserController extends BaseController<User>{
         return modelAndView;
     }
 
+
+
+    @RequestMapping("/registVip")
+    public ModelAndView registVip(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView("/user/registVip");
+        Map<String,String> params = new HashMap<>();
+        params.put("id",request.getParameter("id"));
+        User user = userService.findByParam(params).get(0);
+        mv.addObject(user);
+        return mv;
+
+    }
+
+    @RequestMapping("/registVipMain")
+    public ModelAndView registVipMain(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView("/user/registVip");
+        String json = this.getJsonFromRequest(request);
+        User user = Util.jsonToBean(json, User.class);
+        mv.addObject(user);
+
+        if(StringUtil.isEmpty(user.getPhone())){
+            //手机号不能为空
+            mv.addObject("msg","注册会员信息中手机号不能为空！");
+            return mv;
+        }
+        Map<String,String> params = new HashMap<>();
+        params.put("phone",user.getPhone());
+        List<User> userList = userService.findByParam(params);
+        if (userList==null||userList.isEmpty()){
+            //数据库中无此手机号，允许注册
+            user.setUserType("3");//设置用户类型为会员待审核
+            userService.update(user);
+            mv.addObject("msg","注册会员信息已成功提交，请耐心等待审核！");
+            return mv;
+        }else{
+            mv.addObject("msg",user.getPhone()+" 此手机号已被注册，请查证！");
+            return mv;
+        }
+
+    }
+
+
+    @RequestMapping("/registSeller")
+    public ModelAndView registSeller(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView("/user/registSeller");
+        Map<String,String> params = new HashMap<>();
+        params.put("id",request.getParameter("id"));
+        User user = userService.findByParam(params).get(0);
+        mv.addObject(user);
+        return mv;
+
+    }
+
+    @RequestMapping("/registSellerMain")
+    public ModelAndView registSellerMain(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView("/user/registSeller");
+        String json = this.getJsonFromRequest(request);
+        User user = Util.jsonToBean(json, User.class);
+        mv.addObject(user);
+
+        if(StringUtil.isEmpty(user.getPhone())){
+            //手机号不能为空
+            mv.addObject("msg","注册商家信息中手机号不能为空！");
+            return mv;
+        }
+        Map<String,String> params = new HashMap<>();
+        params.put("phone",user.getPhone());
+        List<User> userList = userService.findByParam(params);
+        if (userList==null||userList.isEmpty()){
+            //数据库中无此手机号，允许注册
+            user.setUserType("1");//设置用户类型为商家待审核
+            userService.update(user);
+            mv.addObject("msg","注册商家信息已成功提交，请耐心等待审核！");
+            return mv;
+        }else{
+            mv.addObject("msg",user.getPhone()+" 此手机号已被注册，请查证！");
+            return mv;
+        }
+
+    }
+
 }
