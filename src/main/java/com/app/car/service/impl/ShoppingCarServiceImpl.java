@@ -53,12 +53,16 @@ public class ShoppingCarServiceImpl extends BaseServiceImpl<ShoppingCar> impleme
             } else {
                 // 如果有此商品，则将商品的数量+1
                 ShoppingCar shoppingCar = userGoodsCarList.get(0);
-                shoppingCar.setNum(shoppingCar.getNum()+1);
-                shoppingCarMapper.update(shoppingCar);
+                shoppingCarMapper.updateCarNum(shoppingCar.getId().toString(), "+1");
                 // 同时商品库存-1
                 goodsMapper.updateGoodsNum(goodsId, "-1");
             }
         }
+    }
+
+    @Override
+    public void updateCarNum(String id, String numFlag) {
+        shoppingCarMapper.updateCarNum(id, numFlag);
     }
 
     /**

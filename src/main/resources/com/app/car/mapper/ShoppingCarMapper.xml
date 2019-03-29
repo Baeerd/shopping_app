@@ -79,4 +79,8 @@
 	      </trim>
 	order by id desc
   </select>
+
+    <update id="updateCarNum" parameterType="java.lang.String">
+        update shopping_car set num = num ${numFlag} where id = ${id}
+    </update>
 </mapper>

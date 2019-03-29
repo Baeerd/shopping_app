@@ -1,5 +1,6 @@
 package com.app.goods.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.common.service.impl.BaseServiceImpl;
@@ -13,4 +14,11 @@ import java.util.Map;
 @Service
 public class GoodsServiceImpl extends BaseServiceImpl<Goods> implements GoodsService {
 
+    @Autowired
+    private GoodsMapper goodsMapper;
+
+    @Override
+    public void updateGoodsNum(String goodsId, String numFlag) {
+        goodsMapper.updateGoodsNum(goodsId, numFlag);
+    }
 }
