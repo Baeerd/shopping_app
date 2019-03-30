@@ -50,17 +50,17 @@
 
                             </a>
 
-                            <a href="/user/vip" class="menuListener" id="userVip">
+                            <a href="/system/userList" class="menuListener" id="userList">
                                 <i class="am-icon-angle-right"></i>
-                                <span>会员管理</span>
+                                <span>人员管理</span>
 
                             </a>
 
-                            <a href="form-news-list.html" class="menuListener">
+                            <%--<a href="form-news-list.html" class="menuListener">
                                 <i class="am-icon-angle-right"></i>
                                 <span>商家管理</span>
 
-                            </a>
+                            </a>--%>
                     </li>
                 </ul>
             </li>
@@ -86,7 +86,7 @@
                             <c:when  test="${loginUser.userType=='2'}">
                                 <a href="form-line.html" class="menuListener" id="registSeller">
                                     <i class="am-icon-angle-right"></i>
-                                    <span>申请入驻</span>
+                                    <span>店铺管理</span>
                                 </a>
                             </c:when>
                             <c:otherwise>

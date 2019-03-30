@@ -40,4 +40,18 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         }
         return user;
     }
+
+    @Override
+    public void auditUser(Long id, String userType) {
+        User user = new User();
+        user.setId(id);
+        if("1".equals(userType)){
+            //审核商家
+            user.setUserType("2");
+        }else if("3".equals(userType)){
+            //审核会员
+            user.setUserType("4");
+        }
+        this.update(user);
+    }
 }

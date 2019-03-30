@@ -1,7 +1,9 @@
 package com.app.user.controller;
 
+import com.app.common.entity.PageModel;
 import com.app.common.controller.BaseController;
 import com.app.common.entity.AppConfig;
+import com.app.common.entity.Response;
 import com.app.common.exception.MessageException;
 import com.app.common.util.LoginUtil;
 import com.app.common.util.Util;
@@ -181,6 +183,29 @@ public class UserController extends BaseController<User>{
             return mv;
         }
 
+    }
+
+
+    @RequestMapping("/userList")
+    public ModelAndView userList(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("/user/userList");
+        Map<String, String> params = new HashMap<>();
+        if(request != null) {
+            String json = super.getJsonFromRequest(request);
+            params = Util.jsonToMap(json);
+        }
+        PageModel<User> page = userService.findByPage(params);
+        modelAndView.addObject("page", page);
+        modelAndView.addObject("userName", params.get("username"));
+        return modelAndView;
+    }
+
+    @RequestMapping("/auditUser")
+    public Response auditUser(HttpServletRequest request){
+        String id = request.getParameter("id");
+        String userType = request.getParameter("userType");
+        userService.auditUser(Long.valueOf(id),userType);
+        return new Response().success();
     }
 
 }

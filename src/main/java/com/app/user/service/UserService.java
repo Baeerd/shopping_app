@@ -12,4 +12,11 @@ public interface UserService extends BaseService<User>{
      * @return
      */
     public User validateLogin(String username, String password);
+
+    /**
+     * 审核用户
+     * @param aLong
+     * @param userType
+     */
+    public void auditUser(Long aLong, String userType);
 }

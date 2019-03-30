@@ -236,7 +236,9 @@ public class BaseController<T> {
             Map<String, String[]> parameterMap = request.getParameterMap();
             Map<String, String> param = new HashMap<>();
             for (String key : parameterMap.keySet()) {
-                param.put(key, parameterMap.get(key)[0]);
+                if(!StringUtils.isEmpty(parameterMap.get(key)[0])){
+                    param.put(key, parameterMap.get(key)[0]);
+                }
             }
             jsonStr = Util.mapToJson(param);
         } catch (Exception e) {

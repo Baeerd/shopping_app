@@ -109,4 +109,42 @@
 	      </trim>
 	order by id desc
   </select>
+
+    <select id="findCounts" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+        count(0)
+        from user
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="id != null" >
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="createdDt != null" >
+                and created_dt = #{createdDt,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createdBy != null" >
+                and created_by = #{createdBy,jdbcType=VARCHAR}
+            </if>
+            <if test="username != null" >
+                and username = #{username,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null" >
+                and password = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null" >
+                and sex = #{sex,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null" >
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="userType != null" >
+                and user_type = #{userType,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null" >
+                and email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null" >
+                and phone = #{phone,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </select>
 </mapper>

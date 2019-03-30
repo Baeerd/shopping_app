@@ -110,7 +110,23 @@
 
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">${loginUser.username}</span><span class="tpl-header-list-user-ico"> <img src="${pageContext.request.contextPath}/assets/img/user01.png"></span>
+                    <span class="tpl-header-list-user-nick">
+                        尊敬的<c:choose>
+                                    <c:when test="${loginUser.userType=='2'}">
+                                        商家:
+                                    </c:when>
+                                    <c:when test="${loginUser.userType=='4'}">
+                                        会员:
+                                    </c:when>
+                                    <c:otherwise>
+                                        用户:
+                                    </c:otherwise>
+                             </c:choose>
+                        ${loginUser.username}
+                    </span>
+                    <span class="tpl-header-list-user-ico">
+                        <img src="${pageContext.request.contextPath}/assets/img/user01.png"> 您好
+                    </span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
