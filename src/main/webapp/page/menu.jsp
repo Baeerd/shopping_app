@@ -84,7 +84,7 @@
                         </a>
                         <c:choose>
                             <c:when  test="${loginUser.userType=='2'}">
-                                <a href="form-line.html" class="menuListener" id="registSeller">
+                                <a href="/shops/shopsListPanel?userId=${loginUser.id}" class="menuListener" id="shopsListPanel">
                                     <i class="am-icon-angle-right"></i>
                                     <span>店铺管理</span>
                                 </a>
