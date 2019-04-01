@@ -67,14 +67,6 @@
                                     </div>
                                 </div>
 
-                                <%--<div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
-                                    <div class="am-u-sm-9">
-                                        <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
-                                        <small>250字以内写出你的一生...</small>
-                                    </div>
-                                </div>--%>
-
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
                                         <button type="submit" class="am-btn am-btn-primary">提交</button>

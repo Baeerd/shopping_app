@@ -46,17 +46,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-input-group am-input-group-sm">
-                            <input id="userIdParam" type="hidden"  value="${loginUser.id}">
-                            <input id="shopsNameParam" type="text" class="am-form-field" placeholder="商铺名称..."
-                                   value="${shopsName}">
-                            <span class="am-input-group-btn">
-                                <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button"
-                                        onclick="shopsList();"></button>
-                            </span>
+                    <form action="/shops/shopsListPanel">
+                        <input type="hidden" name="pageNum">
+                        <input type="hidden" name="pageSize">
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-input-group am-input-group-sm">
+                                <input id="userIdParam" type="hidden"  value="${loginUser.id}">
+                                <input id="shopsNameParam" type="text" class="am-form-field" placeholder="商铺名称..."
+                                       value="${shopsName}">
+                                <span class="am-input-group-btn">
+                                    <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button"
+                                            onclick="shopsList();"></button>
+                                </span>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="am-g">
                     <div class="tpl-table-images">
@@ -98,20 +102,7 @@
                         </c:forEach>
 
                         <div class="am-u-lg-12">
-                            <div class="am-cf">
-
-                                <div class="am-fr">
-                                    <ul class="am-pagination tpl-pagination">
-                                        <li class="am-disabled"><a href="#">«</a></li>
-                                        <li class="am-active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">»</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <%@include file="../page.jsp"%>
                             <hr>
                         </div>
 
