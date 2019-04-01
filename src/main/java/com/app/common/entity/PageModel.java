@@ -14,7 +14,7 @@ public class PageModel<T> {
     private static final long serialVersionUID = -4426958360243585882L;
 
     public static final int PAGENUM = 1;
-    public static final int PAGESIZE = 10;
+    public static final int PAGESIZE = 9;
 
     private int pageNum;
 

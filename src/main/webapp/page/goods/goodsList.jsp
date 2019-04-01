@@ -46,22 +46,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="am-u-sm-12 am-u-md-3">
-                            <div class="am-form-group">
-                                <select id="goodsTypeParam" data-am-selected="{btnSize: 'sm'}" class="initSelect" typeId="goodsType">
-                                  <option value="">点击选择</option>
-                                  <option value="#value">#name</option>
-                                </select>
+
+                        <form action="/goods/goodsList">
+                            <input type="hidden" name="pageNum">
+                            <input type="hidden" name="pageSize">
+                            <div class="am-u-sm-12 am-u-md-3">
+                                <div class="am-form-group">
+                                    <select id="goodsTypeParam" data-am-selected="{btnSize: 'sm'}" class="initSelect" typeId="goodsType">
+                                      <option value="">点击选择</option>
+                                      <option value="#value">#name</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="am-u-sm-12 am-u-md-3">
-                            <div class="am-input-group am-input-group-sm">
-                                <input id="goodsNameParam" type="text" class="am-form-field" placeholder="商品名称..." value="${goodsName}">
-                                <span class="am-input-group-btn">
-                    <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button" onclick="goodsList();"></button>
-          </span>
+                            <div class="am-u-sm-12 am-u-md-3">
+                                <div class="am-input-group am-input-group-sm">
+                                    <input id="goodsNameParam" type="text" class="am-form-field" placeholder="商品名称..." value="${goodsName}">
+                                    <span class="am-input-group-btn">
+                                        <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button" onclick="goodsList();"></button>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
                     </div>
                     <div class="am-g">
                         <div class="am-u-sm-12">

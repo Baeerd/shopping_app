@@ -47,22 +47,30 @@
                             </div>
                         </div>
 
-                        <div class="am-u-sm-12 am-u-md-3">
-                            <div class="am-form-group">
-                                <select id="goodsTypeParam" data-am-selected="{btnSize: 'sm'}" class="initSelect" typeId="goodsType">
-                                    <option value="">点击选择</option>
-                                    <option value="#value">#name</option>
-                                </select>
+                        <form action="/goods/goodsListPanel">
+
+                            <input type="hidden" name="pageNum">
+                            <input type="hidden" name="pageSize">
+
+                            <div class="am-u-sm-12 am-u-md-3">
+                                <div class="am-form-group">
+                                    <select id="goodsTypeParam" data-am-selected="{btnSize: 'sm'}" class="initSelect" typeId="goodsType">
+                                        <option value="">点击选择</option>
+                                        <option value="#value">#name</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="am-u-sm-12 am-u-md-3">
-                            <div class="am-input-group am-input-group-sm">
-                                <input id="goodsNameParam" type="text" class="am-form-field" placeholder="服装名称..." value="${goodsName}">
-                                <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button" onclick="goodsList();"></button>
-          </span>
+                            <div class="am-u-sm-12 am-u-md-3">
+                                <div class="am-input-group am-input-group-sm">
+                                    <input id="goodsNameParam" type="text" class="am-form-field" placeholder="服装名称..." value="${goodsName}">
+                                    <span class="am-input-group-btn">
+                                        <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button" onclick="goodsList();"></button>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+
+                        </form>
+
                     </div>
                     <div class="am-g">
                         <div class="tpl-table-images">
@@ -149,20 +157,8 @@
 
 
                             <div class="am-u-lg-12">
-                                <div class="am-cf">
+                                <%@include file="../page.jsp"%>
 
-                                    <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <li class="am-disabled"><a href="#">«</a></li>
-                                            <li class="am-active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                                 <hr>
                             </div>
 

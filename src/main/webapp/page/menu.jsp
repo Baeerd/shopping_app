@@ -73,7 +73,7 @@
                 </a>
                 <ul class="tpl-left-nav-sub-menu" style="display: block;">
                     <li>
-                        <a href="/goods/goodsListPanel" class="menuListener">
+                        <a href="/goods/goodsListPanel" class="menuListener" id="goodsListPanel">
                             <i class="am-icon-angle-right"></i>
                             <span>服装浏览</span>
                         </a>
