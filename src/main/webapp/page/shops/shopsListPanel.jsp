@@ -137,14 +137,18 @@
     function shopsList() {
         var userIdParam = $("userIdParam").val();
         var shopsNameParam = $("#shopsNameParam").val();
+        if(!userIdParam) {
+            userIdParam = ${loginUser.id};
+        }
         window.location = '/shops/shopsListPanel?shopsName=' + shopsNameParam + '&userId=' + userIdParam;
     }
     /**
      * 删除商铺
      */
     function deleteShops(shopsId) {
+        var me = this;
         $.get("/shops/deleteJson", {"id" : shopsId}, function (data) {
-            this.shopsList();
+            me.shopsList();
         });
     }
     /**

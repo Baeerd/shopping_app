@@ -39,6 +39,14 @@
                 </div>
                 <div class="tpl-block">
                     <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <span class="am-icon-plus"></span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="am-u-sm-12 am-u-md-3">
                             <div class="am-form-group">
                                 <select id="goodsTypeParam" data-am-selected="{btnSize: 'sm'}" class="initSelect" typeId="goodsType">
