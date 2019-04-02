@@ -69,7 +69,7 @@
 
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
                                 <div class="tpl-table-images-content">
-                                    <div class="tpl-table-images-content-i-time">发布时间：${shops.createdDt}</div>
+                                    <div class="tpl-table-images-content-i-time">发布时间：${shops.createdDtView}</div>
                                     <div class="tpl-i-title">
                                             ${shops.shopsName}
                                     </div>
