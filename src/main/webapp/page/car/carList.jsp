@@ -45,6 +45,13 @@
                                         <span class="am-icon-minus">清空购物车</span>
                                     </button>
                                 </div>
+
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button" class="am-btn am-btn-default am-btn-xs am-text-primary am-hide-sm-only" onclick="addOrder();">
+                                        <span class="am-icon-plus">提交订单</span>
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
 
@@ -157,6 +164,13 @@
                 window.location.href = '/goods/goodsListPanel';
             }
         });
+    }
+
+    /**
+     * 提交订单（将该用户购物车车下的商品全部提交订单）
+     */
+    function addOrder() {
+        
     }
 </script>
 
