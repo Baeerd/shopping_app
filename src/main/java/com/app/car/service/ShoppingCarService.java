@@ -21,4 +21,10 @@ public interface ShoppingCarService extends BaseService<ShoppingCar>{
      * @param numFlag
      */
     void updateCarNum(String id, String numFlag);
+
+    /**
+     * 清空当前人的购物车
+     * @param userId
+     */
+    void deleteByUser(String userId);
 }

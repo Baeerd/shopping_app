@@ -8,11 +8,18 @@
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="num" property="num" jdbcType="DECIMAL" />
+
+    <result column="goodsName" property="goods.name" jdbcType="VARCHAR" />
+    <result column="remark" property="goods.remark" jdbcType="VARCHAR" />
+    <result column="price" property="goods.price" jdbcType="VARCHAR" />
+    <result column="image" property="goods.image" jdbcType="VARCHAR" />
+    <result column="goods_type" property="goods.goodsType" jdbcType="VARCHAR" />
+    <result column="shops_id" property="goods.shopsId" jdbcType="VARCHAR" />
   </resultMap>
 
 
   <sql id="Base_Column_List" >
-    id,created_dt,created_by,user_id,goods_id,num
+    c.id,c.created_dt,c.created_by,c.user_id,c.goods_id,c.num,g.name goodsName, g.remark, g.price, g.image, g.goods_type, g.shops_id
   </sql>
 
 
@@ -56,7 +63,7 @@
   <select id="find" parameterType="java.util.Map" resultMap="BaseResultMap">
   	select
 		<include refid="Base_Column_List" />
-	from shopping_car
+	from shopping_car c join goods g on c.goods_id = g.id
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 		      <if test="id != null" >
 		        and id = #{id,jdbcType=BIGINT}
@@ -83,4 +90,30 @@
     <update id="updateCarNum" parameterType="java.lang.String">
         update shopping_car set num = num ${numFlag} where id = ${id}
     </update>
+
+    <select id="findCounts" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+        count(0)
+        from shopping_car
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="id != null" >
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="createdDt != null" >
+                and created_dt = #{createdDt,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createdBy != null" >
+                and created_by = #{createdBy,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null" >
+                and user_id = #{userId,jdbcType=BIGINT}
+            </if>
+            <if test="goodsId != null" >
+                and goods_id = #{goodsId,jdbcType=BIGINT}
+            </if>
+            <if test="num != null" >
+                and num = #{num,jdbcType=DECIMAL}
+            </if>
+        </trim>
+    </select>
 </mapper>

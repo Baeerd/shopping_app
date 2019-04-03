@@ -1,5 +1,7 @@
 package com.app.common.interceptor;
 
+import com.app.car.entity.ShoppingCar;
+import com.app.car.service.ShoppingCarService;
 import com.app.common.entity.AppConfig;
 import com.app.common.util.LoginUtil;
 import org.slf4j.Logger;
@@ -11,6 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 登陆拦截器

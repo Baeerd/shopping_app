@@ -1,6 +1,8 @@
 package com.app.car.service.impl;
 
+import com.app.common.exception.MessageException;
 import com.app.common.util.LoginUtil;
+import com.app.goods.entity.Goods;
 import com.app.goods.mapper.GoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,16 @@ public class ShoppingCarServiceImpl extends BaseServiceImpl<ShoppingCar> impleme
     @Override
     public void addGoods(Map<String, String> params) {
         String goodsId = params.get("goodsId");
+        // 判断商品库存是否已经存在
+        Map<String, String> goodsParams = new HashMap<>();
+        goodsParams.put("id", goodsId);
+        List<Goods> goodsList = goodsMapper.find(goodsParams);
+        if(goodsList != null && goodsList.size() > 0) {
+            Goods goods = goodsList.get(0);
+            if(goods.getNum() < 1) {
+                throw new MessageException("该商品已售罄");
+            }
+        }
         // 判断当前登录人是否已经有购物车
         Map<String, String> carParams = new HashMap<>();
         carParams.put("userId", LoginUtil.getUserId());
@@ -80,6 +92,26 @@ public class ShoppingCarServiceImpl extends BaseServiceImpl<ShoppingCar> impleme
 
         // 同时商品库存-1
         goodsMapper.updateGoodsNum(goodsId, "-1");
+    }
+
+    /**
+     * 清空购物车：删除购物车数据的同时，将购物车中商品数量加到商品库存中
+     * @param userId
+     */
+    @Override
+    public void deleteByUser(String userId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("userId", userId);
+        List<ShoppingCar> shoppingCarList = shoppingCarMapper.find(params);
+        if(shoppingCarList != null && shoppingCarList.size() > 0) {
+            for (ShoppingCar shoppingCar : shoppingCarList) {
+                Integer num = shoppingCar.getNum();
+                // 将购物车中商品数量还到商品库存中
+                goodsMapper.updateGoodsNum(shoppingCar.getGoodsId().toString(), "+"+num);
+                // 将购物车中的该项删除
+                shoppingCarMapper.delete(shoppingCar);
+            }
+        }
     }
 
 }

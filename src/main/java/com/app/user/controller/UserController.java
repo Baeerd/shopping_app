@@ -1,5 +1,7 @@
 package com.app.user.controller;
 
+import com.app.car.entity.ShoppingCar;
+import com.app.car.service.ShoppingCarService;
 import com.app.common.entity.PageModel;
 import com.app.common.controller.BaseController;
 import com.app.common.entity.AppConfig;
@@ -35,6 +37,9 @@ public class UserController extends BaseController<User>{
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ShoppingCarService shoppingCarService;
+
     @RequestMapping("/login")
     public void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String json = getJsonFromRequest(request);
@@ -46,6 +51,11 @@ public class UserController extends BaseController<User>{
             LoginUtil.login(user);
             // 向session中放入用户信息
             request.getSession().setAttribute(LoginUtil.LOGINUSER, user);
+            // 向session中放入购物车信息
+            Map<String, String> carParams = new HashMap<>();
+            carParams.put("userId", LoginUtil.getUserId());
+            List<ShoppingCar> cars = shoppingCarService.findByParam(carParams);
+            request.getSession().setAttribute("cars", cars);
             response.sendRedirect(LoginUtil.getInterceptorPath());
         } catch (MessageException e) {
             request.setAttribute("error", e.getMessage());

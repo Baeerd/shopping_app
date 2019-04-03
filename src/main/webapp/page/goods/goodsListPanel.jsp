@@ -28,7 +28,7 @@
             </div>
             <ol class="am-breadcrumb">
                 <li><a href="/index.html" class="am-icon-home">首页</a></li>
-                <li><a href="javascript:void(0);">Amaze UI CSS</a></li>
+                <li><a href="javascript:void(0);">服装商城系统</a></li>
                 <li class="am-active">服装浏览</li>
             </ol>
             <div class="tpl-portlet-components">
@@ -101,7 +101,14 @@
                                                 单价：<span style="color: blue; ">${goods.price}</span>
                                             </div>
                                             <div class="tpl-i-font">
-                                                剩余：<span style="color: red; ">${goods.num}</span>
+                                                <c:choose>
+                                                    <c:when test="${goods.num < 1}">
+                                                        <span style="color: red; ">已断货</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        剩余：<span style="color: red; ">${goods.num}</span>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </div>
                                             <div class="am-btn-toolbar">
                                                 <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
@@ -115,46 +122,6 @@
                                 </div>
 
                             </c:forEach>
-
-
-                            <%--<div class="am-u-sm-12 am-u-md-6 am-u-lg-4">--%>
-                                <%--<div class="tpl-table-images-content">--%>
-                                    <%--<div class="tpl-table-images-content-i-time">发布时间：2016-09-12</div>--%>
-                                    <%--<div class="tpl-i-title">--%>
-                                        <%--“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！--%>
-                                    <%--</div>--%>
-                                    <%--<a href="javascript:;" class="tpl-table-images-content-i">--%>
-                                        <%--<div class="tpl-table-images-content-i-info">--%>
-                                            <%--<span class="ico">--%>
-                                                <%--<img src="assets/img/user02.png" alt="">追逐--%>
-                                             <%--</span>--%>
-
-                                        <%--</div>--%>
-                                        <%--<span class="tpl-table-images-content-i-shadow"></span>--%>
-                                        <%--<img src="assets/img/a1.png" alt="">--%>
-                                    <%--</a>--%>
-                                    <%--<div class="tpl-table-images-content-block">--%>
-                                        <%--<div class="tpl-i-font">--%>
-                                            <%--你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片。--%>
-                                        <%--</div>--%>
-                                        <%--<div class="tpl-i-more">--%>
-                                            <%--<ul>--%>
-                                                <%--<li><span class="am-icon-qq am-text-warning"> 100+</span></li>--%>
-                                                <%--<li><span class="am-icon-weixin am-text-success"> 235+</span></li>--%>
-                                                <%--<li><span class="am-icon-github font-green"> 600+</span></li>--%>
-                                            <%--</ul>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="am-btn-toolbar">--%>
-                                            <%--<div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">--%>
-                                                <%--<button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-edit"></span> 详细</button>--%>
-                                                <%--<button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 购买</button>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-
-
 
                             <div class="am-u-lg-12">
                                 <%@include file="../page.jsp"%>
@@ -192,7 +159,11 @@
      */
     function buyGoods(goodsId) {
         $.post("/shoppingCar/addGoods", {"goodsId" : goodsId}, function (data) {
-            alert('添加购物车成功！');
+            if(!data.success) {
+                alert(data.data);
+            } else {
+                alert('添加购物车成功！');
+            }
         });
     }
 </script>
