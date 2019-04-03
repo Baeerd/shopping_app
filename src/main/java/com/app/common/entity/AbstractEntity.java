@@ -1,5 +1,7 @@
 package com.app.common.entity;
 
+import com.app.common.util.Util;
+
 import java.util.Date;
 
 /**
@@ -15,6 +17,8 @@ public abstract class AbstractEntity {
 
 	/** 创建时间 */
 	private Date createdDt = new Date();
+
+	private String createdDtView;
 
 	public Long getId() {
 		return id;
@@ -38,5 +42,10 @@ public abstract class AbstractEntity {
 
 	public void setCreatedDt(Date createdDt) {
 		this.createdDt = createdDt;
+		this.createdDtView = Util.formatDate(createdDt);
+	}
+
+	public String getCreatedDtView() {
+		return createdDtView;
 	}
 }
