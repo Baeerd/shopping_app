@@ -59,15 +59,14 @@
                 </div>
             </div>
 
-            <br/><br/>
 
             <div class="row">
 
                 <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
                     <div class="am-slider am-slider-default">
                         <ul class="am-slides">
-                            <li><img src="/assets/img/32.jpg" width="200px" height="200px"></li>
-                            <li><img src="/assets/img/43.jpg" width="200px" height="200px"></li>
+                            <li><img src="/image/goods/goods201904040928917.jpg" width="300px" height="450px"></li>
+                            <li><img src="/image/goods/goods201904040902419.jpg" width="300px" height="450px"></li>
                         </ul>
                     </div>
                 </div>
@@ -75,8 +74,8 @@
                 <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
                     <div class="am-slider am-slider-default">
                         <ul class="am-slides">
-                            <li><img src="/assets/img/32.jpg" width="200px" height="200px"></li>
-                            <li><img src="/assets/img/43.jpg" width="200px" height="200px"></li>
+                            <li><img src="/image/goods/goods201904040932183.jpg" width="300px" height="450px"></li>
+                            <li><img src="/image/goods/goods201904040901402.jpg" width="300px" height="450px"></li>
                         </ul>
                     </div>
                 </div>
@@ -84,8 +83,8 @@
                 <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
                     <div class="am-slider am-slider-default">
                         <ul class="am-slides">
-                            <li><img src="/assets/img/32.jpg" width="200px" height="200px"></li>
-                            <li><img src="/assets/img/43.jpg" width="200px" height="200px"></li>
+                            <li><img src="/image/goods/goods201904040931733.jpg" width="300px" height="450px"></li>
+                            <li><img src="/image/goods/goods201904040901615.jpg" width="300px" height="450px"></li>
                         </ul>
                     </div>
                 </div>
@@ -93,8 +92,8 @@
                 <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
                     <div class="am-slider am-slider-default">
                         <ul class="am-slides">
-                            <li><img src="/assets/img/32.jpg" width="200px" height="200px"></li>
-                            <li><img src="/assets/img/43.jpg" width="200px" height="200px"></li>
+                            <li><img src="/image/goods/goods201904040943940.jpg" width="300px" height="450px"></li>
+                            <li><img src="/image/goods/goods201904040947488.jpg" width="300px" height="450px"></li>
                         </ul>
                     </div>
                 </div>

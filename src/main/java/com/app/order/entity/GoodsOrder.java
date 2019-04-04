@@ -1,25 +1,23 @@
 package com.app.order.entity;
 
 import com.app.common.entity.AbstractEntity;
-
-import java.math.BigDecimal;
-import java.util.Date;
+import com.app.goods.entity.Goods;
 
 public class GoodsOrder extends AbstractEntity{
-
-    private Long carId;
 
     private Double totalPrice;
 
     private String orderNo;
 
-    public Long getCarId() {
-        return carId;
-    }
+    private Long userId;
 
-    public void setCarId(Long carId) {
-        this.carId = carId;
-    }
+    private Long goodsId;
+
+    private Goods goods;
+
+    private Integer num;
+
+    private String orderType;
 
     public Double getTotalPrice() {
         return totalPrice;
@@ -35,5 +33,45 @@ public class GoodsOrder extends AbstractEntity{
 
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
     }
 }

@@ -76,12 +76,12 @@
                                     <a href="javascript:;" class="tpl-table-images-content-i">
                                         <div class="tpl-table-images-content-i-info">
                                             <span class="ico">
-                                                <img src="../assets/img/user02.png" alt="">${shops.createdBy}
+                                                <img src="../assets/img/userLogo.jpg" alt="">${shops.createdBy}
                                              </span>
 
                                         </div>
                                         <span class="tpl-table-images-content-i-shadow"></span>
-                                        <img src="${shops.image}" alt="" width="600;" height="200px;">
+                                        <img src="${shops.image}" alt="" width="600;" height="300px;">
                                     </a>
                                     <div class="tpl-table-images-content-block">
                                         <div class="tpl-i-font">

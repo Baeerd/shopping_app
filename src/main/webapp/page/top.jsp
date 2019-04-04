@@ -70,8 +70,6 @@
                 </ul>
             </li>
 
-
-
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
                     <span class="tpl-header-list-user-nick">
@@ -89,7 +87,7 @@
                         ${loginUser.username}
                     </span>
                     <span class="tpl-header-list-user-ico">
-                        <img src="${pageContext.request.contextPath}/assets/img/user01.png"> 您好
+                        <img src="${pageContext.request.contextPath}/assets/img/userLogo.jpg"> 您好
                     </span>
                 </a>
                 <ul class="am-dropdown-content">

@@ -83,7 +83,7 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">所属商铺</label>
                                     <div class="am-u-sm-9">
-                                        <select name="shopsId" class="initSelect" tableName="shops" displayName="shops_name" displayValue="id">
+                                        <select name="shopsId" class="initSelect" tableName="shops" filterName="user_id" filterValue="${loginUser.id}" displayName="shops_name" displayValue="id">
                                             <option value="#value">#name</option>
                                         </select>
                                     </div>
