@@ -91,7 +91,7 @@
 
                                             </div>
                                             <span class="tpl-table-images-content-i-shadow"></span>
-                                            <img src="${goods.image}" alt="" width="600px;" height="300px;">
+                                            <img src="${goods.image}" alt="" width="600" height="200px;">
                                         </a>
                                         <div class="tpl-table-images-content-block">
                                             <div class="tpl-i-font">
@@ -113,7 +113,7 @@
                                             <div class="am-btn-toolbar">
                                                 <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
                                                     <button type="button" class="am-btn am-btn-default am-btn-warning" onclick="buyGoods(${goods.id});">
-                                                        <span class="am-icon-archive"></span> 添加购物车
+                                                        <span class="am-icon-archive">添加购物车</span>
                                                     </button>
                                                 </div>
                                             </div>

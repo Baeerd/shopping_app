@@ -3,7 +3,7 @@
 <header class="am-topbar am-topbar-inverse admin-header">
     <div class="am-topbar-brand">
         <a href="javascript:;" class="tpl-logo">
-            <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="">
+            <img src="${pageContext.request.contextPath}/assets/img/logo.jpeg" alt="">
         </a>
     </div>
     <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">

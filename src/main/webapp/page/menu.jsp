@@ -16,51 +16,42 @@
                 <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                     <i class="am-icon-table"></i>
                     <span>后台管理</span>
-                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
                 </a>
                 <ul class="tpl-left-nav-sub-menu" style="display: block;">
                     <li>
                         <a href="/goods/goodsList" class="menuListener" id="goodsList">
                             <i class="am-icon-angle-right"></i>
                             <span>商品管理</span>
-                            <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            <%--<i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>--%>
                         </a>
 
-                        <a href="table-images-list.html" class="menuListener">
+                        <%--<a href="/" class="menuListener">
                             <i class="am-icon-angle-right"></i>
-                            <span>商铺管理</span>
+                            <span>商家入驻申请</span>
+                            <i class="tpl-left-nav-content tpl-badge-danger">
+                                5
+                            </i>
+                        </a>--%>
 
-                            <a href="form-news.html" class="menuListener">
-                                <i class="am-icon-angle-right"></i>
-                                <span>商家入驻申请</span>
-                                <i class="tpl-left-nav-content tpl-badge-danger">
-                                    5
-                                </i>
-                            </a>
+                        <a href="/" class="menuListener">
+                            <i class="am-icon-angle-right"></i>
+                            <span>订单管理</span>
 
-                            <a href="form-news-list.html" class="menuListener">
-                                <i class="am-icon-angle-right"></i>
-                                <span>订单管理</span>
+                        </a>
 
-                            </a>
+                        <a href="/" class="menuListener">
+                            <i class="am-icon-angle-right"></i>
+                            <span>评论管理</span>
 
-                            <a href="form-news-list.html" class="menuListener">
-                                <i class="am-icon-angle-right"></i>
-                                <span>评论管理</span>
+                        </a>
 
-                            </a>
+                        <a href="/system/userList" class="menuListener" id="userList">
+                            <i class="am-icon-angle-right"></i>
+                            <span>人员管理</span>
 
-                            <a href="/system/userList" class="menuListener" id="userList">
-                                <i class="am-icon-angle-right"></i>
-                                <span>人员管理</span>
+                        </a>
 
-                            </a>
-
-                            <%--<a href="form-news-list.html" class="menuListener">
-                                <i class="am-icon-angle-right"></i>
-                                <span>商家管理</span>
-
-                            </a>--%>
                     </li>
                 </ul>
             </li>
