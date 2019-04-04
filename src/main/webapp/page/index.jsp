@@ -46,15 +46,13 @@
             </ol>
             <div class="tpl-content-scope">
                 <div class="note note-info">
-                    <h3>Amaze UI 为移动而生
-                        <span class="close" data-close="note"></span>
-                    </h3>
-                    <p> Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件，可快速构建界面出色、体验优秀的跨屏页面，大幅提升开发效率。</p>
-                    <p><span class="label label-danger">提示:</span> Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。
+                    <p><span class="label label-danger">介绍:</span> 小铺12年衣品潮流，显于个性，忠于品质，安于保障。
                     </p>
-                    <p><span class="label label-danger">提示:</span> Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。
+                    <p><span class="label label-danger">介绍:</span> 提供最舒适的购物体验：会员一键注册，千万精品为您所订
                     </p>
-                    <p><span class="label label-danger">提示:</span> Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。
+                    <p><span class="label label-danger">介绍:</span> 提供最便利的商家服务：商品秒添加，订单一览无余
+                    </p>
+                    <p><span class="label label-danger">介绍:</span> 提供最人性化的特色功能：个性评论，专属店家，智能付款
                     </p>
                 </div>
             </div>
