@@ -59,43 +59,17 @@
 
 
             <div class="row">
-
-                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
-                    <div class="am-slider am-slider-default">
-                        <ul class="am-slides">
-                            <li><img src="/image/goods/goods201904040928917.jpg" width="300px" height="450px"></li>
-                            <li><img src="/image/goods/goods201904040902419.jpg" width="300px" height="450px"></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
-                    <div class="am-slider am-slider-default">
-                        <ul class="am-slides">
-                            <li><img src="/image/goods/goods201904040932183.jpg" width="300px" height="450px"></li>
-                            <li><img src="/image/goods/goods201904040901402.jpg" width="300px" height="450px"></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
-                    <div class="am-slider am-slider-default">
-                        <ul class="am-slides">
-                            <li><img src="/image/goods/goods201904040931733.jpg" width="300px" height="450px"></li>
-                            <li><img src="/image/goods/goods201904040901615.jpg" width="300px" height="450px"></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
-                    <div class="am-slider am-slider-default">
-                        <ul class="am-slides">
-                            <li><img src="/image/goods/goods201904040943940.jpg" width="300px" height="450px"></li>
-                            <li><img src="/image/goods/goods201904040947488.jpg" width="300px" height="450px"></li>
-                        </ul>
-                    </div>
-                </div>
-
+				<c:forEach items="${sgvList }" var="shopsGoodsVo">
+	                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+	                    <div class="am-slider am-slider-default">
+	                        <ul class="am-slides">
+	                        	<c:forEach items="${shopsGoodsVo.goodsList }" var="goods">
+		                            <li><img src="${goods.image }" width="300px" height="450px"></li>
+	                            </c:forEach>
+	                        </ul>
+	                    </div>
+	                </div>
+				</c:forEach>
             </div>
 
         </div>

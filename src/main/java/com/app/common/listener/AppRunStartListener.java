@@ -1,10 +1,9 @@
 package com.app.common.listener;
 
-import com.app.common.entity.Constant;
-import com.app.common.entity.DataConfig;
-import com.app.common.service.DataConfigService;
-import com.app.shops.entity.Shops;
-import com.app.shops.service.ShopsService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,11 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.app.common.entity.Constant;
+import com.app.common.entity.DataConfig;
+import com.app.common.service.DataConfigService;
+import com.app.shops.entity.Shops;
+import com.app.shops.service.ShopsService;
 
 /**
  * 服务器启动监听，加载数据
@@ -56,5 +57,7 @@ public class AppRunStartListener implements ApplicationRunner {
         }
         log.info("服务器启动.......................加载缓存数据成功...............");
         log.info("缓存数据：" + Constant.dataConfigMap);
+        
+        
     }
 }

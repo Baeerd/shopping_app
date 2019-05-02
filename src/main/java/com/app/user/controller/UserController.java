@@ -9,6 +9,8 @@ import com.app.common.entity.Response;
 import com.app.common.exception.MessageException;
 import com.app.common.util.LoginUtil;
 import com.app.common.util.Util;
+import com.app.shops.entity.ShopsGoodsVo;
+import com.app.shops.service.ShopsService;
 import com.app.user.entity.User;
 import com.app.user.service.UserService;
 import com.github.pagehelper.util.StringUtil;
@@ -39,6 +41,9 @@ public class UserController extends BaseController<User>{
 
     @Autowired
     private ShoppingCarService shoppingCarService;
+    
+    @Autowired
+    private ShopsService shopsService;
 
     @RequestMapping("/login")
     public void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -56,6 +61,10 @@ public class UserController extends BaseController<User>{
             carParams.put("userId", LoginUtil.getUserId());
             List<ShoppingCar> cars = shoppingCarService.findByParam(carParams);
             request.getSession().setAttribute("cars", cars);
+            // 向session中放入最新的商铺商品信息
+            // 加载商铺商品信息
+            List<ShopsGoodsVo> sgvList = shopsService.findNewShopsVal(4);
+            request.getSession().setAttribute("sgvList", sgvList);
             response.sendRedirect(LoginUtil.getInterceptorPath());
         } catch (MessageException e) {
             request.setAttribute("error", e.getMessage());
