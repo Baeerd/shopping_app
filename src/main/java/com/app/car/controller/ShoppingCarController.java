@@ -97,5 +97,15 @@ public class ShoppingCarController extends BaseController<ShoppingCar>{
         shoppingCarService.deleteByUser(LoginUtil.getUserId());
         return new Response().success();
     }
+    
+    /**
+     * 	提交订单
+     * @return
+     */
+    @RequestMapping("/addOrder")
+    public Response addOrder() {
+    	shoppingCarService.addOrderByUser(LoginUtil.getUserId());
+    	return new Response().success();
+    }
 
 }

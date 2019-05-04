@@ -169,8 +169,13 @@
     /**
      * 提交订单（将该用户购物车车下的商品全部提交订单）
      */
-    function addOrder() {
-        
+    function addOrder(userId) {
+    	$.post("/shoppingCar/addOrder", {}, function (data) {
+            if(data.success) {
+                alert('已提交订单！');
+                /* window.location.href = '/goods/goodsListPanel'; */
+            }
+        });
     }
 </script>
 

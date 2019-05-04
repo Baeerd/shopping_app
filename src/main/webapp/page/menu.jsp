@@ -34,7 +34,7 @@
                             </i>
                         </a>--%>
 
-                        <a href="/" class="menuListener">
+                        <a href="/goodsOrder/orderList?userId=${loginUser.id}" class="menuListener" id="orderList">
                             <i class="am-icon-angle-right"></i>
                             <span>订单管理</span>
 

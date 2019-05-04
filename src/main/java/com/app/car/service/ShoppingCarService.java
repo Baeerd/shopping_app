@@ -27,4 +27,10 @@ public interface ShoppingCarService extends BaseService<ShoppingCar>{
      * @param userId
      */
     void deleteByUser(String userId);
+    
+    /**
+     * 	提交当前登录人的所有购物车订单
+     * @param userId
+     */
+	void addOrderByUser(String userId);
 }
