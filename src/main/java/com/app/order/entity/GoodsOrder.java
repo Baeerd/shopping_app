@@ -1,6 +1,7 @@
 package com.app.order.entity;
 
 import com.app.common.entity.AbstractEntity;
+import com.app.common.entity.Constant;
 import com.app.goods.entity.Goods;
 
 public class GoodsOrder extends AbstractEntity{
@@ -18,6 +19,8 @@ public class GoodsOrder extends AbstractEntity{
     private Integer num;
 
     private String orderType;
+    
+    private String orderTypeView;
 
     public Double getTotalPrice() {
         return totalPrice;
@@ -65,6 +68,7 @@ public class GoodsOrder extends AbstractEntity{
 
     public void setOrderType(String orderType) {
         this.orderType = orderType;
+        this.orderTypeView = Constant.dataConfigMap.get(Constant.ORDER_TYPE).get(orderType);
     }
 
     public Goods getGoods() {
@@ -74,4 +78,10 @@ public class GoodsOrder extends AbstractEntity{
     public void setGoods(Goods goods) {
         this.goods = goods;
     }
+
+	public String getOrderTypeView() {
+		return orderTypeView;
+	}
+    
+    
 }

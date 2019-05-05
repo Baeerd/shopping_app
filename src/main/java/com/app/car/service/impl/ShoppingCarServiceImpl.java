@@ -4,6 +4,10 @@ import com.app.common.exception.MessageException;
 import com.app.common.util.LoginUtil;
 import com.app.goods.entity.Goods;
 import com.app.goods.mapper.GoodsMapper;
+import com.app.order.entity.GoodsOrder;
+import com.app.order.service.GoodsOrderService;
+import com.github.pagehelper.util.StringUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +16,7 @@ import com.app.car.entity.ShoppingCar;
 import com.app.car.mapper.ShoppingCarMapper;
 import com.app.car.service.ShoppingCarService;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +31,9 @@ public class ShoppingCarServiceImpl extends BaseServiceImpl<ShoppingCar> impleme
     @Autowired
     private GoodsMapper goodsMapper;
 
+    @Autowired
+    private GoodsOrderService goodsOrderService;
+    
     /**
      * 逻辑：
      * 1 判断当前登录人是否已经有购物车
@@ -113,5 +121,57 @@ public class ShoppingCarServiceImpl extends BaseServiceImpl<ShoppingCar> impleme
             }
         }
     }
+
+	/**
+	 * 提交当前人的所有购物车信息至订单，并清空购物车
+	 * 设定：一个商家的所有商品为一个订单号（多个商家为多个订单号）
+	 */
+	public void addOrderByUser(String userId) {
+		
+		//提交至订单
+		Map<String, String> params = new HashMap<>();
+        params.put("userId", userId);
+        List<ShoppingCar> shoppingCarList = shoppingCarMapper.find(params);
+        if(shoppingCarList != null && shoppingCarList.size() > 0) {
+        	//定义一个map用于存储商家的订单号信息
+        	Map<Long,String> orderNoMap = new HashMap<>();
+        	int i = 1;
+            for (ShoppingCar shoppingCar : shoppingCarList) {
+            	//创建订单实体,赋值存储
+            	GoodsOrder goodsOrder = new GoodsOrder();
+            	
+            	//购物车的商品信息
+            	Goods goods = shoppingCar.getGoods();
+            	Long shopsId = goods.getShopsId();
+            	//通过商铺ID判断是否此商铺是否已有订单号（当前时间加流水号）
+            	String orderNo = orderNoMap.get(shopsId);
+            	if(StringUtil.isEmpty(orderNo)) {
+            		//无订单号,创建订单号,并将订单号放置orderNoMap中
+            		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            		orderNo = sdf.format(new Date())+i;
+            		i++;
+            		orderNoMap.put(shopsId, orderNo);
+            	}
+            	goodsOrder.setCreatedBy(LoginUtil.getUserName());
+            	goodsOrder.setGoods(goods);
+            	goodsOrder.setGoodsId(shoppingCar.getGoodsId());
+            	goodsOrder.setNum(shoppingCar.getNum());
+            	goodsOrder.setOrderNo(orderNo);
+            	goodsOrder.setOrderType("0");//待付款状态
+            	goodsOrder.setUserId(shoppingCar.getUserId());
+            	/*
+            	 * 	FIXME 此处可以增加会员处理逻辑
+            	 */
+            	Double totalPrice = new Double(0);
+            	totalPrice = goods.getPrice()*shoppingCar.getNum();
+            	goodsOrder.setTotalPrice(totalPrice);
+            	
+            	goodsOrderService.insert(goodsOrder);
+            }
+        }
+		
+        //回调清除购物车方法
+        this.deleteByUser(userId);
+	}
 
 }

@@ -59,7 +59,7 @@
               user_id = #{userId,jdbcType=DECIMAL},
           </if>
           <if test="goodsId != null" >
-              goodsId = #{goodsId,jdbcType=DECIMAL},
+              goods_Id = #{goodsId,jdbcType=DECIMAL},
           </if>
           <if test="num != null" >
               num = #{num,jdbcType=DECIMAL},
@@ -111,4 +111,40 @@
 	      </trim>
 	order by id desc
   </select>
+  
+  <select id="findCounts" parameterType="java.util.Map" resultType="java.lang.Integer">
+  select
+ 	 count(0)
+	from goods_order o join goods g on g.id = o.goods_id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		      <if test="id != null" >
+		        and o.id = #{id,jdbcType=BIGINT}
+		      </if>
+		      <if test="createdDt != null" >
+		        and o.created_dt = #{createdDt,jdbcType=TIMESTAMP}
+		      </if>
+		      <if test="createdBy != null" >
+		        and o.created_by = #{createdBy,jdbcType=VARCHAR}
+		      </if>
+		      <if test="totalPrice != null" >
+		        and o.total_price = #{totalPrice,jdbcType=DOUBLE}
+		      </if>
+		      <if test="orderNo != null" >
+		        and o.order_no = #{orderNo,jdbcType=VARCHAR}
+		      </if>
+		      <if test="userId != null" >
+		        and o.user_id = #{userId,jdbcType=DECIMAL}
+		      </if>
+		      <if test="goodsId != null" >
+		        and o.goodsId = #{goodsId,jdbcType=DECIMAL}
+		      </if>
+		      <if test="num != null" >
+		        and o.num = #{num,jdbcType=DECIMAL}
+		      </if>
+		      <if test="orderType != null" >
+		        and o.order_type = #{orderType,jdbcType=VARCHAR}
+		      </if>
+	      </trim>
+  </select>
+  
 </mapper>

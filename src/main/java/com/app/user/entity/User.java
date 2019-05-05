@@ -1,6 +1,7 @@
 package com.app.user.entity;
 
 import com.app.common.entity.AbstractEntity;
+import com.app.common.entity.Constant;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,6 +17,8 @@ public class User extends AbstractEntity{
     private String name;
 
     private String userType;
+    
+    private String userTypeView;
 
     private String email;
 
@@ -59,6 +62,7 @@ public class User extends AbstractEntity{
 
     public void setUserType(String userType) {
         this.userType = userType;
+        this.userTypeView = Constant.dataConfigMap.get(Constant.USER_TYPE).get(userType);
     }
 
     public String getEmail() {
@@ -76,4 +80,9 @@ public class User extends AbstractEntity{
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+	public String getUserTypeView() {
+		return userTypeView;
+	}
+    
 }
