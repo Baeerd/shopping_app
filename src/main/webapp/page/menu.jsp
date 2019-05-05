@@ -40,7 +40,7 @@
 
                         </a>
 
-                        <a href="/" class="menuListener">
+                        <a href="/comment/commentList" class="menuListener">
                             <i class="am-icon-angle-right"></i>
                             <span>评论管理</span>
 
@@ -93,36 +93,3 @@
         </ul>
     </div>
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        /**
-         * 监听菜单点击事件
-         */
-        menuClickListener();
-        /**
-         * 监听菜单选择事件
-         */
-        menuListener();
-    });
-    
-    function menuListener() {
-        // 获取cookie
-        var menuSelect = $.cookie('menuSelect');
-        console.log(menuSelect);
-        if(!menuSelect){
-            return;
-        }
-        // 清空选中状态
-        $(".menuListener").removeClass("active");
-        $("#"+menuSelect).addClass("active");
-    }
-
-    function menuClickListener() {
-        $(".menuListener").click(function () {
-            var id = $(this).attr("id");
-            // 设置cookie
-            $.cookie('menuSelect', id);
-        });
-    }
-</script>
