@@ -83,7 +83,7 @@
                                         <div class="tpl-i-title">
                                             ${goods.name}
                                         </div>
-                                        <a href="javascript:;" class="tpl-table-images-content-i">
+                                        <a href="javascript:showDetail(${goods.id});" class="tpl-table-images-content-i">
                                             <div class="tpl-table-images-content-i-info">
                                             <span class="ico">
                                                 <img src="../assets/img/userLogo.jpg" alt="">${goods.createdBy}
@@ -165,6 +165,14 @@
                 alert('添加购物车成功！');
             }
         });
+    }
+
+    /**
+     * 展示商品详情页面
+     * @param goodsId
+     */
+    function showDetail(goodsId) {
+        window.location = "/comment/commentList?goodsId=" + goodsId;
     }
 </script>
 

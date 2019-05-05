@@ -92,6 +92,14 @@
 	                                            <td>${goods.name}</td>
 	                                            <td>${goods.remark}</td>
 	                                            <td>${goods.price}</td>
+                                                <td>
+                                                    <c:if  test="${orderVo.orderTypeView=='已付款'}">
+                                                        <input type="text" id="goodsComment${goods.id}">
+                                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-primary am-hide-sm-only" onclick="addComment(${goods.id});">
+                                                            <span class="am-icon-plus">评论</span>
+                                                        </button>
+                                                    </c:if>
+                                                </td>
                                        	    </tr>
                                     	</c:forEach>
                                     </tbody>
@@ -139,6 +147,16 @@
                 alert('已取消订单！');
                 //window.location.href = '/goods/goodsListPanel'; 
             }
+        });
+    }
+
+    function addComment(goodsId) {
+        var goodsComment = $("#goodsComment"+goodsId).val();
+        var jsonData = {"goodsId" : goodsId, "content" : goodsComment};
+        var url = "/comment/addJson";
+        $.post(url, jsonData, function (data) {
+            alert("评论成功!");
+            $("#goodsComment"+goodsId).val('');
         });
     }
     

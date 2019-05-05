@@ -1388,6 +1388,17 @@ ul.tpl-dropdown-content li>a.tpl-dropdown-content-message:last-child {
     border-radius: .25em;
 }
 
+.tpl-label-import {
+    font-size: 13px;
+    padding: 2px 5px;
+    background-color: #ea1328;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
 .tpl-task-remind li .cosA .cosIco {
     display: inline-block;
     width: 24px;

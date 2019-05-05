@@ -8,7 +8,6 @@
       <result column="total_price" property="totalPrice" jdbcType="DOUBLE" />
       <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
       <result column="user_id" property="userId" jdbcType="DECIMAL" />
-      <result column="goods_id" property="goodsId" jdbcType="DECIMAL" />
       <result column="num" property="num" jdbcType="DECIMAL" />
       <result column="order_type" property="orderType" jdbcType="VARCHAR" />
 
@@ -18,6 +17,7 @@
       <result column="image" property="goods.image" jdbcType="VARCHAR" />
       <result column="goods_type" property="goods.goodsType" jdbcType="VARCHAR" />
       <result column="shops_id" property="goods.shopsId" jdbcType="VARCHAR" />
+      <result column="goods_id" property="goods.id" jdbcType="DECIMAL" />
 
   </resultMap>
 

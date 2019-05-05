@@ -9,6 +9,8 @@ import com.app.common.entity.Response;
 import com.app.common.exception.MessageException;
 import com.app.common.util.LoginUtil;
 import com.app.common.util.Util;
+import com.app.order.entity.GoodsOrder;
+import com.app.order.service.GoodsOrderService;
 import com.app.shops.entity.ShopsGoodsVo;
 import com.app.shops.service.ShopsService;
 import com.app.user.entity.User;
@@ -45,6 +47,9 @@ public class UserController extends BaseController<User>{
     @Autowired
     private ShopsService shopsService;
 
+    @Autowired
+    private GoodsOrderService goodsOrderService;
+
     @RequestMapping("/login")
     public void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String json = getJsonFromRequest(request);
@@ -61,6 +66,11 @@ public class UserController extends BaseController<User>{
             carParams.put("userId", LoginUtil.getUserId());
             List<ShoppingCar> cars = shoppingCarService.findByParam(carParams);
             request.getSession().setAttribute("cars", cars);
+            // 向session中放入订单信息
+            Map<String, String> orderParams = new HashMap<>();
+            carParams.put("userId", LoginUtil.getUserId());
+            List<GoodsOrder> orders = goodsOrderService.findByParam(orderParams);
+            request.getSession().setAttribute("orders", orders);
             // 向session中放入最新的商铺商品信息
             // 加载商铺商品信息
             List<ShopsGoodsVo> sgvList = shopsService.findNewShopsVal(4);

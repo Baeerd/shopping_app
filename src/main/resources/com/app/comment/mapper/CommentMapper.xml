@@ -72,4 +72,26 @@
 	      </trim>
 	order by id desc
   </select>
+    <select id="findCounts" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+        count(0)
+        from comment
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="id != null" >
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="createdDt != null" >
+                and created_dt = #{createdDt,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createdBy != null" >
+                and created_by = #{createdBy,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null" >
+                and content = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="goodsId != null" >
+                and goods_id = #{goodsId,jdbcType=BIGINT}
+            </if>
+        </trim>
+    </select>
 </mapper>
