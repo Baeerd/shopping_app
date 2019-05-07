@@ -15,11 +15,21 @@ public class GoodsOrderVo extends AbstractEntity{
     
     private Double totalPrice;
     
+    private String showPrice;
+    
     private String orderTypeView;
     
     private List<Goods> goodsList;
 
     
+	public String getShowPrice() {
+		return showPrice;
+	}
+
+	public void setShowPrice(String showPrice) {
+		this.showPrice = showPrice;
+	}
+
 	public String getOrderTypeView() {
 		return orderTypeView;
 	}

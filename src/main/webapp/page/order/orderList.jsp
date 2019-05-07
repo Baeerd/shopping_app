@@ -28,6 +28,7 @@
             </div>
             <ol class="am-breadcrumb">
                 <li><a href="/index.html" class="am-icon-home">首页</a></li>
+                <li><a href="javascript:void(0);">服装商城系统</a></li>
                 <li class="am-active">我的订单</li>
             </ol>
             <div class="tpl-portlet-components">
@@ -55,14 +56,21 @@
                                     <thead>
 	                                    <tr>
 	                                    	<element>
-	                                    		<font color="blue" size="5">
+	                                    		<font color="blue" size="4">
 		                                    		时间：${orderVo.creatDt }
 		                                    		&nbsp;&nbsp;
 		                                    		订单号：${orderVo.orderNo }
 		                                    		&nbsp;&nbsp;
 		                                    		商铺名称：${orderVo.shopsName }
 		                                    		&nbsp;&nbsp;
-		                                    		订单金额：${orderVo.totalPrice }
+		                                    		<c:choose>
+	                            						<c:when  test="${orderVo.showPrice != null }">
+		                                    				订单金额：<del>${orderVo.totalPrice }</del> <font color="red">${orderVo.showPrice }</font>
+		                                    			</c:when>
+		                                    			<c:otherwise>
+		                                    				订单金额：${orderVo.totalPrice }
+		                                    			</c:otherwise>
+	                                    			</c:choose>
 		                                    		&nbsp;&nbsp;
 		                                    		订单状态：${orderVo.orderTypeView }
 		                                    		
@@ -85,13 +93,25 @@
                                     	</tr>
                                     </thead>
                                     <tbody>
-                                    
+                                    <tr>
+                                        <th class="table-date">商品图</th>
+                                        <th class="table-date">商品</th>
+                                        <th class="table-date">简介</th>
+                                        <th class="table-date">价格</th>
+                                        <th class="table-date">数量</th>
+                                        <c:if  test="${orderVo.orderTypeView=='已付款'}">
+	                                        <th class="table-date">
+                                               	评论
+	                                        </th>
+                                        </c:if>
+                                    </tr>
                                     	<c:forEach items="${orderVo.goodsList }" var="goods">
                                     		<tr>
 	                                            <td><img src="${goods.image}" width="200" height="100"></td>
 	                                            <td>${goods.name}</td>
 	                                            <td>${goods.remark}</td>
 	                                            <td>${goods.price}</td>
+	                                            <td>${goods.orderGoodsNum}</td>
                                                 <td>
                                                     <c:if  test="${orderVo.orderTypeView=='已付款'}">
                                                         <input type="text" id="goodsComment${goods.id}">
@@ -134,7 +154,7 @@
     	$.post("/goodsOrder/payment", {'orderNo':orderNo}, function (data) {
             if(data.success) {
                 alert('已付款！');
-                //window.location.href = '/goods/goodsListPanel'; 
+                window.location.href = "/goodsOrder/orderList?userId=${loginUser.id}"; 
             }
         });
     }
@@ -145,7 +165,7 @@
     	$.post("/goodsOrder/clearOrder", {'orderNo':orderNo}, function (data) {
             if(data.success) {
                 alert('已取消订单！');
-                //window.location.href = '/goods/goodsListPanel'; 
+                window.location.href = "/goodsOrder/orderList?userId=${loginUser.id}";
             }
         });
     }

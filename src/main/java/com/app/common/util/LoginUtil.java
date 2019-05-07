@@ -15,7 +15,7 @@ public class LoginUtil {
 
     public static final String LOGINPAGE = "/login.html";
 
-    private static String interceptorPath;
+    private static String interceptorPath="/";
 
     private static Logger log = LoggerFactory.getLogger(LoginUtil.class);
 
@@ -36,6 +36,14 @@ public class LoginUtil {
         return user==null?"":user.getId().toString();
     }
 
+    /**
+     * 获取此时登陆用户类型
+     * @return
+     */
+    public static String getUserType() {
+        return user==null?"":user.getUserType();
+    }
+    
     /**
      * 获取此时登陆用户名
      * @return

@@ -28,7 +28,7 @@
         </div>
         <ol class="am-breadcrumb">
             <li><a href="/index.html" class="am-icon-home">首页</a></li>
-            <li><a href="javascript:void(0);">后台管理</a></li>
+            <li><a href="javascript:void(0);">服装商城系统</a></li>
             <li class="am-active">商铺管理</li>
         </ol>
         <div class="tpl-portlet-components">
@@ -87,14 +87,18 @@
                                         <div class="tpl-i-font">
                                             详细信息：${shops.shopsRemark}
                                         </div>
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
-                                                <button type="button" class="am-btn am-btn-default am-btn-warning"
-                                                        onclick="deleteShops(${shops.id});">
-                                                    <span class="am-icon-archive"></span> 删除
-                                                </button>
-                                            </div>
-                                        </div>
+                                        
+                                        <c:if  test="${loginUser.username=='admin'}">
+	                                        <div class="am-btn-toolbar">
+	                                            <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+	                                                <button type="button" class="am-btn am-btn-default am-btn-warning"
+	                                                        onclick="deleteShops(${shops.id});">
+	                                                    <span class="am-icon-archive"></span> 删除
+	                                                </button>
+	                                            </div>
+	                                        </div>
+                                        </c:if>
+                                        
                                     </div>
                                 </div>
                             </div>

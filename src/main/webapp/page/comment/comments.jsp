@@ -28,6 +28,7 @@
             </div>
             <ol class="am-breadcrumb">
                 <li><a href="/index.html" class="am-icon-home">首页</a></li>
+                <li><a href="javascript:void(0);">服装商城系统</a></li>
                 <li class="am-active">评论管理</li>
             </ol>
             <div class="tpl-portlet-components">

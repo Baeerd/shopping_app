@@ -12,6 +12,7 @@
                 </a>
             </li>
 
+		<c:if  test="${loginUser.username=='admin'}">
             <li class="tpl-left-nav-item">
                 <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                     <i class="am-icon-table"></i>
@@ -26,25 +27,11 @@
                             <%--<i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>--%>
                         </a>
 
-                        <%--<a href="/" class="menuListener">
+                        <a href="/shops/shopsListPanel" class="menuListener" id="shopsListPanel2">
                             <i class="am-icon-angle-right"></i>
-                            <span>商家入驻申请</span>
-                            <i class="tpl-left-nav-content tpl-badge-danger">
-                                5
-                            </i>
-                        </a>--%>
-
-                        <a href="/goodsOrder/orderList?userId=${loginUser.id}" class="menuListener" id="orderList">
-                            <i class="am-icon-angle-right"></i>
-                            <span>订单管理</span>
-
+                            <span>店铺管理</span>
                         </a>
 
-                        <a href="/comment/comments" class="menuListener">
-                            <i class="am-icon-angle-right"></i>
-                            <span>评论管理</span>
-
-                        </a>
 
                         <a href="/system/userList" class="menuListener" id="userList">
                             <i class="am-icon-angle-right"></i>
@@ -55,7 +42,7 @@
                     </li>
                 </ul>
             </li>
-
+		</c:if>
             <li class="tpl-left-nav-item">
                 <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                     <i class="am-icon-wpforms"></i>
@@ -68,16 +55,24 @@
                             <i class="am-icon-angle-right"></i>
                             <span>服装浏览</span>
                         </a>
-
-                        <a href="/system/registVip?id=${loginUser.id}" class="menuListener" id="registVip">
+                        
+						<a href="/goodsOrder/orderList?userId=${loginUser.id}" class="menuListener" id="orderList">
                             <i class="am-icon-angle-right"></i>
-                            <span>会员注册</span>
+                            <span>我的订单</span>
                         </a>
+
+						<c:if  test="${loginUser.userType=='0'}">
+	                        <a href="/system/registVip?id=${loginUser.id}" class="menuListener" id="registVip">
+	                            <i class="am-icon-angle-right"></i>
+	                            <span>会员注册</span>
+	                        </a>
+	                    </c:if>  
+	                        
                         <c:choose>
                             <c:when  test="${loginUser.userType=='2'}">
                                 <a href="/shops/shopsListPanel?userId=${loginUser.id}" class="menuListener" id="shopsListPanel">
                                     <i class="am-icon-angle-right"></i>
-                                    <span>店铺管理</span>
+                                    <span>我的店铺</span>
                                 </a>
                             </c:when>
                             <c:otherwise>
@@ -87,6 +82,13 @@
                                 </a>
                             </c:otherwise>
                         </c:choose>
+                        
+                        <a href="/comment/comments" class="menuListener">
+                            <i class="am-icon-angle-right"></i>
+                            <span>评论管理</span>
+
+                        </a>
+                        
                     </li>
                 </ul>
             </li>

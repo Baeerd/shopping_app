@@ -1,5 +1,6 @@
 package com.app.order.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,24 +13,28 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.common.controller.BaseController;
 import com.app.common.entity.Response;
+import com.app.common.util.LoginUtil;
 import com.app.common.util.Util;
 import com.app.goods.entity.Goods;
+import com.app.goods.service.GoodsService;
 import com.app.order.entity.GoodsOrder;
 import com.app.order.entity.GoodsOrderVo;
 import com.app.order.service.GoodsOrderService;
 
-@Controller
+@RestController
 @Scope("prototype")
 @RequestMapping("/goodsOrder")
 public class GoodsOrderController extends BaseController<GoodsOrder>{
 	@Autowired
 	private GoodsOrderService goodsOrderService;
+	@Autowired
+	private GoodsService goodsService;
 	
 	@RequestMapping("/orderList")
     public ModelAndView orderList(HttpServletRequest request) {
@@ -40,20 +45,27 @@ public class GoodsOrderController extends BaseController<GoodsOrder>{
             params = Util.jsonToMap(json);
         }
         List<GoodsOrder> goodsOrderList = goodsOrderService.findByParam(params);
+        
+        
+        //查询当前人是否为会员
+        Boolean vipFlag = "4".equals(LoginUtil.getUserType());
+        
         //如果订单号&&商家名&&创建时间&&订单状态 一致则算是一条订单
         Map<String,List<Goods>> orderMap = new HashMap<>();
         for (GoodsOrder goodsOrder : goodsOrderList) {
         	String orderNo = goodsOrder.getOrderNo();//订单号
-        	String shopsName = goodsOrder.getGoods().getShopsIdView();//商家名
+        	Goods goods = goodsOrder.getGoods();
+        	String shopsName = goods.getShopsIdView();//商家名
         	String createdDtView = goodsOrder.getCreatedDtView();//创建时间
         	String orderTypeView = goodsOrder.getOrderTypeView();//订单状态
+        	goods.setOrderGoodsNum(goodsOrder.getNum());
         	String key = createdDtView+"#"+orderNo+"#"+shopsName+"#"+orderTypeView;
         	List<Goods> list = orderMap.get(key);
         	if(list!=null&&!list.isEmpty()) {
-        		list.add(goodsOrder.getGoods());
+        		list.add(goods);
         	}else {
         		List<Goods> goodsList = new ArrayList<>();
-        		goodsList.add(goodsOrder.getGoods());
+        		goodsList.add(goods);
         		orderMap.put(key, goodsList);
         	}
         	
@@ -77,6 +89,13 @@ public class GoodsOrderController extends BaseController<GoodsOrder>{
 				}
 			}
 			goodsOrderVo.setTotalPrice(totalPrice);
+			
+			//增加会员处理逻辑
+			if(vipFlag) {
+				DecimalFormat df = new DecimalFormat( "0.0"); 
+				goodsOrderVo.setShowPrice(df.format(totalPrice*0.7));
+			}
+			
 			goodsOrderVoList.add(goodsOrderVo);
 		}
         
@@ -120,6 +139,8 @@ public class GoodsOrderController extends BaseController<GoodsOrder>{
 		params.put("orderNo", orderNo);
 		List<GoodsOrder> goodsOrderList = goodsOrderService.findByParam(params);
 		for (GoodsOrder goodsOrder : goodsOrderList) {
+			//取消订单增加库存量
+			goodsService.updateGoodsNum(Long.toString(goodsOrder.getGoods().getId()), "+"+goodsOrder.getNum());
 			goodsOrder.setOrderType("2");
 			goodsOrderService.update(goodsOrder);
 		}

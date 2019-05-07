@@ -30,6 +30,8 @@ public class Goods extends AbstractEntity{
     private String goodsTypeView;
 
     private String shopsIdView;
+    
+    private Integer orderGoodsNum;//订单中此商品的数量 仅用于展示
 
     public String getName() {
         return name;
@@ -106,4 +108,14 @@ public class Goods extends AbstractEntity{
     public String getShopsIdView() {
         return shopsIdView;
     }
+
+	public Integer getOrderGoodsNum() {
+		return orderGoodsNum;
+	}
+
+	public void setOrderGoodsNum(Integer orderGoodsNum) {
+		this.orderGoodsNum = orderGoodsNum;
+	}
+    
+    
 }

@@ -159,9 +159,6 @@ public class ShoppingCarServiceImpl extends BaseServiceImpl<ShoppingCar> impleme
             	goodsOrder.setOrderNo(orderNo);
             	goodsOrder.setOrderType("0");//待付款状态
             	goodsOrder.setUserId(shoppingCar.getUserId());
-            	/*
-            	 * 	FIXME 此处可以增加会员处理逻辑
-            	 */
             	Double totalPrice = new Double(0);
             	totalPrice = goods.getPrice()*shoppingCar.getNum();
             	goodsOrder.setTotalPrice(totalPrice);

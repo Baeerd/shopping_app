@@ -111,6 +111,7 @@ public class UserController extends BaseController<User>{
 
         user.setCreatedBy("NA");
         user.setCreatedDt(new Date());
+        user.setUserType("0");
         userService.insert(user);
         mv.setViewName("/login");
         mv.addObject("msg","注册成功，请登录！");
