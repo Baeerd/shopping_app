@@ -1,5 +1,6 @@
 package com.app.comment.controller;
 
+import com.app.comment.entity.CommentVo;
 import com.app.comment.service.CommentService;
 import com.app.common.entity.PageModel;
 import com.app.common.util.Util;
@@ -55,6 +56,19 @@ public class CommentController extends BaseController<Comment>{
         // 查询商品对应的所有评论列表
         PageModel<Comment> page = commentService.findByPage(commentParams);
         modelAndView.addObject("page", page);
+        return modelAndView;
+    }
+
+    @RequestMapping("/comments")
+    public ModelAndView comments(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("/comment/comments");
+        String jsonFromRequest = super.getJsonFromRequest(request);
+        Map<String, String> params = Util.jsonToMap(jsonFromRequest);
+
+        // 查询商品对应的所有评论列表
+        PageModel<CommentVo> page = commentService.findComments(params);
+        modelAndView.addObject("page", page);
+        modelAndView.addObject("paramsGoodsName", params.get("goodsName"));
         return modelAndView;
     }
 

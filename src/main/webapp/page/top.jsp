@@ -38,25 +38,6 @@
                 </ul>
             </li>
 
-
-            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
-                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="am-icon-calendar"></span> 我的订单 </span>
-                </a>
-                <ul class="am-dropdown-content tpl-dropdown-content">
-
-                    <c:forEach items="${orders}" begin="0" end="3" var="order">
-                        <li class="tpl-dropdown-list-bdbc">
-                            <a href="#" class="tpl-dropdown-list-fl">
-                                <span class="am-icon-btn am-icon-plus tpl-dropdown-ico-btn-size tpl-badge-success"></span>
-                                ${order.orderNo}
-                            </a>
-                        </li>
-                    </c:forEach>
-
-                </ul>
-            </li>
-
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
                     <span class="tpl-header-list-user-nick">

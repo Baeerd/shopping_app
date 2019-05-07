@@ -100,13 +100,13 @@
                                             <div class="tpl-i-font">
                                                 单价：<span style="color: blue; ">${goods.price}</span>
                                             </div>
-                                            <div class="tpl-i-font">
+                                            <div class="tpl-i-font" id="goodsNum${goods.id}">
                                                 <c:choose>
                                                     <c:when test="${goods.num < 1}">
                                                         <span style="color: red; ">已断货</span>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        剩余：<span style="color: red; ">${goods.num}</span>
+                                                        剩余：<span style="color: red; " id="currentNum${goods.id}">${goods.num}</span>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
@@ -114,6 +114,9 @@
                                                 <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
                                                     <button type="button" class="am-btn am-btn-default am-btn-warning" onclick="buyGoods(${goods.id});">
                                                         <span class="am-icon-archive">添加购物车</span>
+                                                    </button>
+                                                    <button type="button" class="am-btn am-btn-default am-btn-secondary" onclick="showDetail(${goods.id});">
+                                                        <span class="am-icon-edit">查看评论</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -158,11 +161,13 @@
      * 添加至购物车
      */
     function buyGoods(goodsId) {
+        var goodsNum = $("#currentNum"+goodsId).html();
         $.post("/shoppingCar/addGoods", {"goodsId" : goodsId}, function (data) {
             if(!data.success) {
                 alert(data.data);
             } else {
                 alert('添加购物车成功！');
+                $("#goodsNum"+goodsId).html("剩余：<span style=\"color: red; \" id=\"currentNum"+goodsId+"\">"+Number(goodsNum-1)+"</span>");
             }
         });
     }

@@ -40,7 +40,7 @@
 
                         </a>
 
-                        <a href="/comment/commentList" class="menuListener">
+                        <a href="/comment/comments" class="menuListener">
                             <i class="am-icon-angle-right"></i>
                             <span>评论管理</span>
 

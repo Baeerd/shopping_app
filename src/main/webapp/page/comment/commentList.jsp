@@ -53,22 +53,6 @@
                             <input type="hidden" name="pageNum">
                             <input type="hidden" name="pageSize">
 
-                            <div class="am-u-sm-12 am-u-md-3">
-                                <div class="am-form-group">
-                                    <select data-am-selected="{btnSize: 'sm'}" name="goodsId" class="initSelect" tableName="goods" displayName="name" displayValue="id">
-                                        <option value="">所有商品</option>
-                                        <option value="#value">#name</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="am-u-sm-12 am-u-md-3">
-                                <div class="am-input-group am-input-group-sm">
-                                    <input type="text" name="goodsName" class="am-form-field">
-                                    <span class="am-input-group-btn">
-                                        <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="submit"></button>
-                                    </span>
-                                </div>
-                            </div>
                         </form>
                     </div>
 
@@ -95,13 +79,13 @@
                                     <div class="tpl-i-font">
                                         单价：<span style="color: blue; ">${goods.price}</span>
                                     </div>
-                                    <div class="tpl-i-font">
+                                    <div class="tpl-i-font" id="goodsNum${goods.id}">
                                         <c:choose>
                                             <c:when test="${goods.num < 1}">
                                                 <span style="color: red; ">已断货</span>
                                             </c:when>
                                             <c:otherwise>
-                                                剩余：<span style="color: red; ">${goods.num}</span>
+                                                剩余：<span style="color: red; " id="currentNum${goods.id}">${goods.num}</span>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
@@ -168,11 +152,13 @@
             if(!goodsId) {
                 return;
             }
+            var goodsNum = $("#currentNum"+goodsId).html();
             $.post("/shoppingCar/addGoods", {"goodsId" : goodsId}, function (data) {
                 if(!data.success) {
                     alert(data.data);
                 } else {
                     alert('添加购物车成功！');
+                    $("#goodsNum"+goodsId).html("剩余：<span style=\"color: red; \" id=\"currentNum"+goodsId+"\">"+Number(goodsNum-1)+"</span>");
                 }
             });
         }

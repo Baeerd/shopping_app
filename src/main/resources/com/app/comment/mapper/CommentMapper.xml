@@ -9,6 +9,15 @@
     <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
   </resultMap>
 
+    <resultMap id="CommentsResultMap" type="com.app.comment.entity.CommentVo" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="created_dt" property="createdDt" jdbcType="TIMESTAMP" />
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+        <result column="name" property="goodsName" jdbcType="VARCHAR" />
+    </resultMap>
+
 
   <sql id="Base_Column_List" >
     id,created_dt,created_by,content,goods_id
@@ -93,5 +102,56 @@
                 and goods_id = #{goodsId,jdbcType=BIGINT}
             </if>
         </trim>
+    </select>
+
+    <select id="findComments" parameterType="java.util.Map" resultMap="CommentsResultMap">
+        select
+        a.*, b.name
+        from comment a, goods b
+        where a.goods_id = b.id
+            <if test="id != null" >
+                and a.id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="createdDt != null" >
+                and a.created_dt = #{createdDt,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createdBy != null" >
+                and a.created_by = #{createdBy,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null" >
+                and a.content = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="goodsId != null" >
+                and a.goods_id = #{goodsId,jdbcType=BIGINT}
+            </if>
+            <if test="goodsName != null" >
+                and (a.content like '%${goodsName}%' or b.name like '%${goodsName}%')
+            </if>
+        order by a.id desc
+    </select>
+
+    <select id="findCommentsCounts" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+        count(0)
+        from comment a, goods b
+        where a.goods_id = b.id
+        <if test="id != null" >
+            and a.id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="createdDt != null" >
+            and a.created_dt = #{createdDt,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createdBy != null" >
+            and a.created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="content != null" >
+            and a.content = #{content,jdbcType=VARCHAR}
+        </if>
+        <if test="goodsId != null" >
+            and a.goods_id = #{goodsId,jdbcType=BIGINT}
+        </if>
+        <if test="goodsName != null" >
+            and (a.content like '%${goodsName}%' or b.name like '%${goodsName}%')
+        </if>
     </select>
 </mapper>
